@@ -1,0 +1,376 @@
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /*max-width: 300px;*/
+  margin: auto;
+  /*text-align: center;*/
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  text-align: center;
+  /*background-color: #a6c1c2;*/
+}
+.card1 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  text-align: center;
+  background-color: #0050f754;
+}
+</style>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.column {
+margin-bottom: 4px;
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* Style the buttons */
+.btn {
+
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+</style>
+<div id="tx" class="alert alert-info" style="margin-bottom:0;"></div>
+<div class="panel-heading">
+      <span class="panel-title"><h2 align="center">Dashboard</h2></span>
+</div>
+<div class="panel-body">
+      <h1 align="center"> Welcome&nbsp;&nbsp;&nbsp;<span id="l_username2"></span> </h1>
+     <p align="center">Manage your work recharges here...</p>
+</div>
+<div class="row">
+	<div class="column"></div>
+	<div class="column">
+		<div class="card1">
+			<span class="feature-icon"><i class="fa fa-thumbs-up"></i></span>
+		</div>
+		<div class="feature-box box-shadow" style="height: 68px;">
+			<h5>Success Transactons<br>{{$scope.total_success}}</h5>
+		</div>
+	</div>
+	<div class="column">
+		<div class="card1">
+			<span class="feature-icon"><i class="fa fa-thumbs-down"></i></span>
+		</div>
+		<div class="feature-box box-shadow" style="height: 68px;">
+			<h5>Failed Transactons<br>{{$scope.total_failure}}</h5>
+		</div>
+	</div>
+</div>				
+<div class="col-sm-12 clearfix">
+   	<div class="col-md-4 column" ui-sref="department">
+    	<div class="feature-box box-shadow">
+        	<span class="feature-icon"><i class="fa fa-google-wallet"></i></span>
+            <h5>Total Balance</h5> <br>
+            <h5>{{$wallet_bal}}</h5><br>
+        </div>
+    </div>
+    <div ng-show="type=='Admin'"> <!-- admin ng-show start here -->
+    	<div class="col-md-4 column" ui-sref="questions_manager">
+	    	<div class="feature-box box-shadow">
+	        	<span class="feature-icon"><i class="fa fa-user-circle-o"></i><a href=""></a></span>
+	            <h5 style="text-align:center;">Total Member {{$total_mem}}</h5>
+	            <h5 style="text-align:center;">Total Master {{$total_mas}}</h5>
+	            <h5 style="text-align:center;">Total Distributor {{$total_dis}}</h5>
+	            <h5 style="text-align:center;">Total Retailer {{$total_rt}}</h5>
+	        </div>
+			<!--<article class="card mb-2">
+				<img src="https://picsum.photos/600/300/?image=25" alt="Image" class="card-img-top img-responsive">
+				<span class="feature-icon card-img-top"><i class="fa fa-user-circle-o fa-4x"></i></span>
+				<div class="card-body">
+					<h4 class="card-title">Members</h4>
+					<p class="card-text">Total Member {{$total_mem}}</p>
+					<p class="card-text">Total Master {{$total_mas}}</p>
+					<p class="card-text">Total Distributor {{$total_dis}}</p>
+					<p class="card-text">Total Retailer {{$total_rt}}</p>
+				</div>
+			</article>-->
+	    </div>
+	    <div class="col-md-4 column" ui-sref="exam_master">
+	     	<div class="feature-box box-shadow">
+	         	<span class="feature-icon"><i class="fa fa-money"></i></span>
+	             <h5>Mobile Transaction </h5>
+	             <h5>Total Transaction {{$total_mob_total}}</h5>
+	             <h5>Success Transaction {{$total_mob_success}}</h5>
+	             <h5>Failure Transaction {{$total_mob_failure}}</h5>
+	         </div>
+	    </div>
+	    <div class="col-md-4 column" ui-sref="exam_master">
+	   		<div class="feature-box box-shadow">
+	       		<span class="feature-icon"><i class="fa fa-money"></i></span>
+	           	<h5>DTH Transaction </h5>
+	           	<h5>Total Transaction {{$total_dth_total}}</h5>
+	           	<h5>Success Transaction {{$total_dth_success}}</h5>
+	           	<h5>Failure Transaction {{$total_dth_failure}}</h5>
+	       	</div>
+	   	</div>	
+     </div> <!-- admin ng-show end here -->
+     
+     <div ng-show="type=='Master'">  <!-- master ng-show  -->
+     	<div class="col-md-4 column" ui-sref="questions_manager">
+	    	<div class="feature-box box-shadow">
+	        	<span class="feature-icon"><i class="fa fa-user-circle-o"></i><a href=""></a></span>
+	            <h5 style="text-align:center;">Total Member {{$total_mas_mem}}</h5>
+	            <h5 style="text-align:center;">Total Distributor {{$total_mas_dis}}</h5>
+	            <h5 style="text-align:center;">Total Retailer {{$total_mas_rt}}</h5>
+	        </div>
+	    </div>
+	    <div class="col-md-4 column" ui-sref="exam_master">
+	     	<div class="feature-box box-shadow">
+	         	<span class="feature-icon"><i class="fa fa-money"></i></span>
+	             <h5>Mobile Transaction </h5>
+	             <h5>Total Transaction {{$mas_mob_total}}</h5>
+	             <h5>Success Transaction {{$mas_mob_success}}</h5>
+	             <h5>Failure Transaction {{$mas_mob_failure}}</h5>
+	         </div>
+	    </div>
+	    <div class="col-md-4 column" ui-sref="exam_master">
+	   		<div class="feature-box box-shadow">
+	       		<span class="feature-icon"><i class="fa fa-money"></i></span>
+	           	<h5>DTH Transaction </h5>
+	           	<h5>Total Transaction {{$mas_dth_total}}</h5>
+	           	<h5>Success Transaction {{$mas_dth_success}}</h5>
+	           	<h5>Failure Transaction {{$mas_dth_failure}}</h5>
+	       	</div>
+	   	</div>	
+     </div>  <!-- master ng-show end here -->
+     
+   	 <div ng-show="type=='Distributor'"> <!-- distributor ng-show -->
+   	 	<div class="col-md-4 column" ui-sref="questions_manager">
+	    	<div class="feature-box box-shadow">
+	        	<span class="feature-icon"><i class="fa fa-user-circle-o"></i><a href=""></a></span>
+	            <h5 style="text-align:center;">Total Member</h5>
+	            <h5 style="text-align:center;">Total Retailer {{$total_dis_rt}}</h5>
+	        </div>
+	    </div>
+	    <div class="col-md-4 column" ui-sref="exam_master">
+	     	<div class="feature-box box-shadow">
+	         	<span class="feature-icon"><i class="fa fa-money"></i></span>
+	             <h5>Mobile Transaction </h5>
+	             <h5>Total Transaction {{$dis_mob_total}}</h5>
+	             <h5>Success Transaction {{$dis_mob_success}}</h5>
+	             <h5>Failure Transaction {{$dis_mob_failure}}</h5>
+	         </div>
+	    </div>
+	    <div class="col-md-4 column" ui-sref="exam_master">
+	   		<div class="feature-box box-shadow">
+	       		<span class="feature-icon"><i class="fa fa-money"></i></span>
+	           	<h5>DTH Transaction </h5>
+	           	<h5>Total Transaction {{$dis_dth_total}}</h5>
+	           	<h5>Success Transaction {{$dis_dth_success}}</h5>
+	           	<h5>Failure Transaction {{$dis_dth_failure}}</h5>
+	       	</div>
+	   	</div>	
+   	 </div>  <!-- retailer ng-show end here -->
+   	  <div ng-show="type=='Retailer'"> <!-- retailer ng-show -->
+	    <div class="col-md-4 column" ui-sref="exam_master">
+	     	<div class="feature-box box-shadow">
+	         	<span class="feature-icon"><i class="fa fa-money"></i></span>
+	             <h5>Mobile Transaction </h5>
+	             <h5>Total Transaction {{$ret_mob_total}}</h5>
+	             <h5>Success Transaction {{$ret_mob_success}}</h5>
+	             <h5>Failure Transaction {{$ret_mob_failure}}</h5>
+	         </div>
+	    </div>
+	    <div class="col-md-4 column" ui-sref="exam_master">
+	   		<div class="feature-box box-shadow">
+	       		<span class="feature-icon"><i class="fa fa-money"></i></span>
+	           	<h5>DTH Transaction </h5>
+	           	<h5>Total Transaction {{$ret_dth_total}}</h5>
+	           	<h5>Success Transaction {{$ret_dth_success}}</h5>
+	           	<h5>Failure Transaction {{$ret_dth_failure}}</h5>
+	       	</div>
+	   	</div>	
+	   	<div class="col-md-4 column" ui-sref="department">
+			<div class="feature-box box-shadow">
+	    		<span class="feature-icon"><i class="fa fa-google-wallet"></i></span>
+	        	<h5>Gas Recharge</h5><br>
+	        	<h5>Coming Soon</h5><br>
+	    	</div>
+		</div>
+   	 </div>  <!-- retailer ng-show end here -->
+   	
+</div>
+<div class="row clearfix" ng-show="type=='Retailer'">
+	<div class="col-md-4 column" ui-sref="recharge">
+		<div class="feature-box box-shadow">
+			<span class="feature-icon"><i class="fa fa-mobile"></i><a href=""></a></span>
+			<h5>Mobile Recharge</h5><br>
+		</div>
+	</div>
+	<div class="col-md-4 column" ui-sref="recharge">
+		<div class="feature-box box-shadow">
+	    	<span class="feature-icon"><i class="fa fa-caret-square-o-up"></i></span>
+	        <h5>Dth Recharge </h5><br>
+	    </div>
+	</div>
+	<div class="col-md-4 column" ui-sref="department">
+		<div class="feature-box box-shadow">
+	    	<span class="feature-icon"><i class="fa fa-bolt"></i></span>
+	        <h5>Electricity Recharge</h5>
+	        <h5>Coming Soon</h5>
+	    </div>
+	</div>
+	<div class="col-md-4 column" ui-sref="department">
+		<div class="feature-box box-shadow">
+	    	<span class="feature-icon"><i class="fa fa-google-wallet"></i></span>
+	        <h5>Water Recharge</h5>
+	        <h5>Coming Soon</h5>
+	    </div>
+	</div>
+</div>
+
+
+
+
+<!--<div class="row clearfix" ng-show="type=='Retailer'">-->
+<!--	<div class="card">-->
+<!--  <img src="https://pngimage.net/wp-content/uploads/2018/06/user-logo-png-4.png" alt="John" style="width:100%">-->
+<!--  <h1> {{$ret_name}}</h1>-->
+<!--  <p class="title">CEO & Founder, Example</p>-->
+<!--  <p>Harvard University</p>-->
+<!--  <div style="margin: 24px 0;">-->
+<!--    <a href="#"><i class="fa fa-dribbble"></i></a> -->
+<!--    <a href="#"><i class="fa fa-twitter"></i></a>  -->
+<!--    <a href="#"><i class="fa fa-linkedin"></i></a>  -->
+<!--    <a href="#"><i class="fa fa-facebook"></i></a> -->
+<!--  </div>-->
+<!--  <p><button>Contact</button></p>-->
+<!--</div>-->
+<!--</div>-->
+
+                    
+<script>
+// var ctx = document.getElementById("myChart").getContext('2d');
+// var myChart = new Chart(ctx, {
+//   type: 'bar',
+//   data: {
+//     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+//     datasets: [{
+//       label: '# of Votes',
+//       data: [12, 19, 3, 5, 2, 3],
+//       backgroundColor: [
+//         'rgba(255, 99, 132, 0.2)',
+//         'rgba(54, 162, 235, 0.2)',
+//         'rgba(255, 206, 86, 0.2)',
+//         'rgba(75, 192, 192, 0.2)',
+//         'rgba(153, 102, 255, 0.2)',
+//         'rgba(255, 159, 64, 0.2)'
+//       ],
+//       borderColor: [
+//         'rgba(255,99,132,1)',
+//         'rgba(54, 162, 235, 1)',
+//         'rgba(255, 206, 86, 1)',
+//         'rgba(75, 192, 192, 1)',
+//         'rgba(153, 102, 255, 1)',
+//         'rgba(255, 159, 64, 1)'
+//       ],
+//       borderWidth: 1
+//     }]
+//   },
+//   options: {
+//     scales: {
+//       yAxes: [{
+//         ticks: {
+//           beginAtZero: true
+//         }
+//       }]
+//     }
+//   }
+// });
+
+</script>
+<!-- <canvas id="myChart" style="max-width: 100%;"></canvas> -->

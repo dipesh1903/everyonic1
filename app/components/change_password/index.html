@@ -1,0 +1,36 @@
+<div class="heading">
+  <ol class="breadcrumb">
+    <li><a href="#/">Dashboard</a></li>
+    <li><a href="javascript:void(0)">Change Password</a></li>
+  </ol>
+</div>
+
+<div class="col-sm-12 well animated fadeIn">
+<div class="col-sm-12 well ng-scope" style="padding: 10px 10px 20px 10px">
+     <div class="col-sm-12">
+         <form name="changeform1" id="changeform1" ng-submit="save_data(x)" class="ng-pristine ng-invalid ng-invalid-required">
+            <div class="col-sm-6 col-sm-offset-3">
+                    <label>Current Password </label>
+                    <input class="form-control span10 ng-pristine ng-invalid ng-invalid-required ng-touched" ng-model="x.old" name="currentpass" id="currentpass" type="password" placeholder=" Enter Current Password" autofocus="" required="">
+                
+                      <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" ng-model="x.new" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="newpass" placeholder="Enter New Password " required="">
+                      </div>
+                     
+                     <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" ng-model="x.conf" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="cmpassword" placeholder="Confirm Your New Password" required="">
+                      </div>
+                      <br>
+                <div id="result"></div>
+                <img id="loader" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+                <button type="submit" id="submitbtn" class="btn btn-info" ng-disabled="form1.$invalid" accesskey="s" disabled="disabled">Change</button>
+                <a class="btn btn-default" accesskey="c" ng-click="filter_new()"><u><b>C</b></u>lear</a> 
+                <br><br>
+            </div>
+        </form>
+    </div>
+</div>
+
+</div>

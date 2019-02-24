@@ -1,0 +1,31 @@
+
+<div class="pull-right"><h5>Wallet Balace : {{bal}}</h5>  </div>
+<div class="col-sm-12 well"><br>
+	<form name="panform" id="panform" method="post" action="" >
+		<div class="col-sm-12">
+			<div class="col-sm-4">
+				<label>Enter Mobile Number </label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="p.uti_no" name="number" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Message</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input type="text" ng-model="p.uti_name" name="msg" class="form-control">
+		   	</div><div class="clearfix"></div><br>
+			<div class="col-md-12">
+				<button type="submit" id="submitbtnsms" accesskey="s" ng-click="save_sms_data()" class="btn btn-info btn-xs"
+					ng-disabled="mobform.$invalid" style="padding: 4px; font-size: 14px;">
+					<b>Submit</b>
+				</button>
+				<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_sms_data()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+				<img id="loader" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+			</div>
+	</form>
+	<div class="clearfix"></div><br>
+	
+</div>
+

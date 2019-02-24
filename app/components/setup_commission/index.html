@@ -1,0 +1,43 @@
+<div id="setup_commission">
+	<div class="col-sm-12">
+		<div class="heading text-center">
+			<h1>Setup Commission Details</h1>
+		</div>
+	</div>
+	<div ng-repeat="m in commission_details" class="col-sm-12 well">
+		<form name="set_commission_form" id="set_commission_form" method="post" action="" >
+			<div class="col-sm-6">
+				<div class="col-sm-4">
+					<label>Matser Commission</label>
+				</div>
+				<div class="col-sm-8">
+					<input ng-model="m.master_commission" name="master_commission" class="form-control" required>
+				</div>
+				<div class="clearfix"></div><br>
+				<div class="col-sm-4">
+					<label>Distributor Commission</label>
+				</div>
+				<div class="col-sm-8">
+					<input ng-model="m.distributor_commission" name="distributor_commission" class="form-control" required>
+				</div><div class="clearfix"></div><br>
+				<div class="col-sm-4">
+					<label>Retailer Commission</label>
+				</div>
+				<div class="col-sm-8">
+					<input ng-model="m.retailer_commission" name="retailer_commission" class="form-control" required>
+				</div>
+				<div class="clearfix"></div><br>
+			</div>
+			<div class="clearfix"></div>
+			<div class="col-md-12">
+				<button type="submit" id="savecommissiondetails" accesskey="s" ng-click="save_commission_details()" class="btn btn-info"
+					ng-disabled="set_commission_form.$invalid">
+					<b>{{m.cm_id ? 'Update Details' : 'Save Details'}}</b>
+				</button>
+				<a class="btn btn-default" accesskey="c" ng-click="clear_commission_data()"><b>Clear</b></a>
+				<img id="loadermas" class="loadermas" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+			</div>
+			<input type="hidden" ng-model="m.cm_id" name="cm_id" ng-init="" ng-value="m.cm_id"/>
+		</form>
+	</div>
+</div>

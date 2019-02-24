@@ -1,0 +1,54 @@
+<h4 style="text-align:center">DTH FORM</h4>
+<div class="col-sm-12 well"><br>
+	<form name="dthform" id="dthform" method="post" action="" >
+		<div class="col-sm-6">
+			<div class="col-sm-4">
+				<label>Enter Dth Number</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input  name="custno" ng-model="d.cust_no" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Amount</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input  name="amount" ng-model="d.amount" class="form-control">
+		   	</div><div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>DTH Operator</label>
+			</div>
+			<div class="col-sm-8">
+					<select name="sercode" ng-model="d.operator" required class="form-control">
+					<option value="">Select Operator</option>
+	                <option value="AD">AIRTEL DTH</option>
+	                <option value="BT">BIG TV DTH</option>
+	                <option value="DT">DISH TV DTH</option>
+	                <option value="TS">TATA SKY DTH</option>
+	                <option value="VD">VIDEOCON DTH</option>
+	                <option value="ST">SUN TV DTH </option>
+					</select>
+			</div>
+			<div class="clearfix"></div><br>
+				<div class="col-sm-4">
+				<label>Rechage Type</label>
+			</div>
+			<div class="col-sm-8">
+				<select name="stv" ng-model="d.stv" class="form-control"  required>
+					<option value="">Select Recharge Type</option>
+	                <option value="0">Topup</option>
+	                <option value="1">Special Recharge</option>
+
+				</select>
+			</div>
+
+		<div class="col-md-12">
+				<button type="submit" id="submitbtn1dth" accesskey="s" ng-click="save_dth_data()" class="btn btn-info btn-xs"
+					ng-disabled="dthform.$invalid" style="padding: 4px; font-size: 14px;">
+					<b>Submit</b>
+				</button>
+				<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_data_recharge()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+				<img id="loader1dth" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+			</div>
+	</form>
+</div>

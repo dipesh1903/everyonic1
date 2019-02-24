@@ -1,0 +1,65 @@
+<div class="heading">
+	<ol class="breadcrumb">
+		<li><a href="#/">Dashboard</a></li>
+		<li><a href="javascript:void(0)">Provider</a></li>
+	</ol>
+</div>
+
+
+<div class="col-sm-12 well">
+	<div class="heading text-center" style="margin-top:-15px;">
+		<h1>Add Operator</h1>
+	</div><br>
+	<div class="col-sm-6">
+	<form name="prvform" id="prvform" method="post" action="" >
+		<input name="pro_id" id="pro_id" ng-model="pr.pro_id" hidden>
+	  	<div class="col-sm-4">
+			<label>Service</label>
+		</div>
+		<div class="col-sm-8">
+			<select name="ser_id" ng-model="pr.ser_id" required class="form-control">
+				<option value="">Select Service</option>
+                <option  ng-repeat="s in service" value="{{s.ser_id}}">{{s.service_name}}</option>
+			</select>
+		</div>
+		<div class="clearfix"></div><br>
+		<div class="col-sm-4">
+			<label>Operator Code</label>
+		</div>
+	   	<div class="col-sm-8">
+			<input ng-model="pr.opcode" name="opcode" class="form-control" required>
+	   	</div>
+	   	<div class="clearfix"></div><br>
+		<div class="col-sm-4">
+			<label>Operator Name</label>
+		</div>
+	   	<div class="col-sm-8">
+			<input ng-model="pr.opname" name="opname" class="form-control">
+	   	</div>
+	   	<div class="clearfix"></div><br>
+		<div class="col-sm-4">
+			<label>Service Code</label>
+		</div>
+	   	<div class="col-sm-8">
+			<input ng-model="pr.sercode" name="sercode" class="form-control">
+	   	</div>
+	   	
+		<div class="clearfix"></div><br>
+		<div class="col-md-12">
+			<button type="submit" id="submitbtn1pro" accesskey="s" ng-click="prv_save()" class="btn btn-info btn-xs"
+				ng-disabled="prvform.$invalid" style="padding: 4px; font-size: 14px;">
+				<b>Submit</b>
+			</button>
+			<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_prv()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+			<img id="loader1pro" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+		</div>
+	</form>
+	</div>
+</div>
+<div class="clearfix"></div><br>
+<div class="col-sm-12 well">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10">
+		<div ng-include="'./app/components/provider/data.html'"></div>
+	</div>
+</div>

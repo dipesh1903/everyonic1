@@ -1,0 +1,109 @@
+<div class="heading">
+	<ol class="breadcrumb">
+		<li><a href="#/">Dashboard</a></li>
+		<li><a href="#/package">Package</a></li>
+	</ol>
+</div>
+<div class="heading">
+	<h1>Package Commission</h1>
+</div>
+
+<div class="col-sm-12 well"><br>
+	<div class="table-data">
+		<table class="table table-hover">
+			<thead>
+				<tr class="active">
+					<th >Package ID</th>
+					<th >Package Name</th>
+					<th >Charge</th>
+					<th >Charge Type</th>
+					<th >Commission</th>
+					<th >Commission Type</th>
+                       <th >Provider/Operator</th>
+                       <th >Update </th>
+				</tr>
+			</thead>
+		</table>
+		
+		<div class="col-lg-12" name="avijeet">
+			
+				<div  ng-repeat="y in datadb" >
+					<form name="commissionform" id="commissionform{{y.sercode}}" method="post" action="">
+						<div class="row">
+							<div class="col-sm-1">
+								<input name="pac_id" ng-model="y.pid" hidden >{{y.pid}}
+							</div>
+							<div  class="col-sm-1">  {{y.pname}} </div>
+							<div  class="col-sm-2">
+								<input name="charge" ng-model="y.charge">
+							</div>
+							<div  class="col-sm-1">		
+								<select  ng-model="y.char_typ"  name="char_type" class="form-control" style="width:92%" > 
+					       			<option value="">-Select-</option>
+					         		<option value="p">Percent</option>
+					         		<option value="r">Rupee</option>
+						         </select> 
+							</div>
+							<div  class="col-sm-2"><input ng-model="y.commission" name="commission" > </div>
+							<div  class="col-sm-1">
+								<select ng-model="y.com_typ" name="com_typ" class="form-control" style="width:92%" >
+						  			<option value="">-Select-</option>
+						      		<option value="p">Percent</option>
+						      		<option value="r">Rupee</option>
+						      	</select>
+							</div>
+							
+							<div  class="col-sm-2">
+								<input ng-model="y.sercode" name="sercode" hidden> <span  class="pull-right"> {{y.opname}}</span>
+							</div>
+							<div  class="col-sm-2 ">
+								<button type="submit" class="btn btn-warning pull-right" ng-click="save_commission(y.sercode)" id="submitbtdpac1{{y.sercode}}">Update</button>
+								<img id="loaderpac{{y.sercode}}" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+							</div>
+						</div>
+					</form>
+				<div class="clearfix"></div>
+	 			</div>	
+	 			<!-- 				<div ng-form="commissionform"  id="commissionform" method="post"> -->
+<!-- 				<div  ng-repeat="y in datadb" > -->
+<!-- 				    <ng-form name="subform"> -->
+<!-- 				    		<div class="row"> -->
+<!-- 					<div class="col-sm-1"> -->
+<!-- 						<input name="pac_id" ng-model="y.pid" hidden >{{y.pid}} -->
+<!-- 					</div> -->
+<!-- 					<div  class="col-sm-1">{{y.pname}}</div> -->
+<!-- 					<div  class="col-sm-2"> -->
+<!-- 						<input name="charge" ng-model="y.charge"> -->
+<!-- 					</div> -->
+<!-- 					<div  class="col-sm-1">		 -->
+<!-- 						<select  ng-model="y.char_typ"  name="char_type[$index]" class="form-control" style="width:92%" >  -->
+<!-- 			       			<option value="">-Select-</option> -->
+<!-- 			         		<option value="p">Percent</option> -->
+<!-- 			         		<option value="r">Rupee</option> -->
+<!-- 				         </select>  -->
+<!-- 					</div> -->
+<!-- 					<div  class="col-sm-2"><input ng-model="y.commission" name="commission" > </div> -->
+<!-- 					<div  class="col-sm-1"> -->
+<!-- 						<select ng-model="y.com_typ" name="com_typ" class="form-control" style="width:92%" > -->
+<!-- 				  			<option value="">-Select-</option> -->
+<!-- 				      		<option value="p">Percent</option> -->
+<!-- 				      		<option value="r">Rupee</option> -->
+<!-- 				      	</select> -->
+<!-- 					</div> -->
+<!-- 					<div  class="col-sm-2"> -->
+<!-- 						<input ng-model="y.opcode" name="opcode" >{{y.opname}} -->
+<!-- 					</div> -->
+<!-- 					<div  class="col-sm-2"> -->
+<!-- 						<button type="submit" class="btn btn-warning" ng-click="save_commission()" id="submitbtdpac1">Update</button> -->
+<!-- 						<img id="loaderpac1" src="./assets/images/loaders/1.gif" style="height:25px;display:none"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!--                   <input type="text" class="textbox" ng-model="dependent.FirstName"/> -->
+<!--                <input type="button" value="Save" ng-click="saveDependentDetailsClick(dependent)" /> -->
+<!--            			 </ng-form> -->
+<!-- 				</div> -->
+<!-- 				</div> -->
+	 		
+		</div>
+	</div>
+</div>

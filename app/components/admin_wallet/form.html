@@ -1,0 +1,54 @@
+<div class="col-sm-12 well"><br>
+	<form name="adminwalform" id="adminwalform" method="post" action="" >
+		<input name="id" ng-model="pac.id" hidden>
+		<div class="col-sm-12">
+			<div class="col-sm-2">
+				<label>Select Admin</label>
+			</div>
+		   	<div class="col-sm-4">
+				<select ng-model="ad.admin_id" name="admin_id" class="form-control" style="width:92%" ng-change="calc_adwallet(ad.admin_id)">
+		            <option value="">--Select Services--</option>
+		            <option ng-repeat="d in admin_details" value="{{d.admin_id}}">{{d.name}}</option>
+          		</select>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	<div ng-show="wallet=='1'">
+		   		<div class="col-sm-2" >
+					<label>Wallet Balance</label>
+				</div>
+			   	<div class="col-sm-4">
+					<input ng-model="ad.wal_bal1" class="form-control" readonly required>
+			   	</div>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+			<div class="col-sm-2">
+				<label>Enter Wallet Amount</label>
+			</div>
+		   	<div class="col-sm-4">
+				<input ng-model="ad.wal_bal" name="wal_bal" class="form-control" required>
+		   	</div>
+		   		<div class="clearfix"></div><br>
+		   	<div ng-show="ad.adminwal_id">
+		   		<div class="col-sm-2">
+					<label>Status</label>
+				</div>
+				<div class="col-sm-4">
+			   		<input type="checkbox" ng-model="ad.status" ng-if="ad.status" style="width: 30px; height: 40px; border: 0px; shadow: none"
+						ng-true-value="'1'" ng-false-value="'0'"> 
+					<input ng-model="ad.status" name="status" hidden>
+				</div>
+		   	</div>
+			<div class="clearfix"></div><br>
+		</div>
+		<div class="clearfix"></div><br>
+		<div class="col-md-12">
+			<button type="submit" id="submitbtd1adwal" accesskey="s" ng-click="save_adwal_data()" class="btn btn-info btn-xs"
+				ng-disabled="adminwalform.$invalid" style="padding: 4px; font-size: 14px;">
+				<b>Submit</b>
+			</button>
+			<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_adminwallet()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+			<img id="loader1adwal" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+		</div>
+	</form>
+	<div class="clearfix"></div><br>
+</div>

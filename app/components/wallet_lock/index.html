@@ -1,0 +1,67 @@
+<div class="heading">
+	<ol class="breadcrumb">
+		<li><a href="#/">Dashboard</a></li>
+		<li><a href="javascript:void(0)">Wallet Lock</a></li>
+	</ol>
+</div>
+<div class="heading">
+	<h1>Lock Wallet</h1>
+</div>
+<div class="col-sm-12 well animated fadeIn">
+	<form name="walletlock" id="walletlock" method="post" action="">
+     <input name="id" ng-model="wl.cus_wal_id" hidden>
+      <div class="clearfix"></div><br>
+      <div class="col-sm-12">
+      <div class="col-sm-2">
+        <label>Balance</label>
+      </div>
+      <div class="col-sm-4">
+        <input name="loc_bal" class="form-control" ng-model="wl.loc_bal">
+      </div>
+      <div class="clearfix"></div><br>
+	    <div class="col-sm-2">
+	        <label>Select Partner ID:</label>
+	    </div>
+      	<div class="col-sm-2" ng-hide="wl.ds_id||wl.rt_id">
+      		<label style="color:red">Master</label>
+      		<select ng-model="wl.ms_id" name="ms_id"  class="form-control" style="width:92%" ng-change="calc_wallet(wl.ms_id,ms)">
+      		<option value=""> Selecet Master</option>
+	            <option value="a">--All--</option>
+	            <option ng-repeat="m in master_details" value="{{m.ms_id}}">{{m.name}}</option>
+          	</select>
+      	</div>
+      	<div class="col-sm-2" ng-hide="wl.ms_id||wl.rt_id">
+      		<label style="color:red">Distributor</label>
+      		<select ng-model="wl.ds_id" name="ds_id"  class="form-control" style="width:92%" ng-change="calc_wallet(wl.ds_id,ds)">
+      			<option value=""> Selecet Distributor</option>
+	            <option value="b">--All--</option>
+	            <option ng-repeat="d in dist_details" value="{{d.ds_id}}">{{d.name}}</option>
+          </select>
+      	</div>
+      	<div class="col-sm-2" ng-hide="wl.ms_id||wl.ds_id">
+      		<label style="color:red">Retailor</label>
+      		<select ng-model="wl.rt_id" name="rt_id"  class="form-control" style="width:92%" ng-change="calc_wallet(wl.rt_id,rt)">
+      			<option value=""> Selecet Retailor</option>
+	            <option value="c">--All--</option>
+	            <option ng-repeat="r in ret_details" value="{{r.rt_id}}">{{r.name}}</option>
+          </select>
+      	</div>
+      	<div><input name="mem_typ" ng-if="wl.ms_id" value="ms" hidden></div>
+      	<div><input name="mem_typ" ng-if="wl.ds_id" value="ds" hidden></div>
+      	<div><input name="mem_typ" ng-if="wl.rt_id" value="rt" hidden></div>
+      </div>
+      <div class="clearfix"></div><br>
+      <div class="col-md-12">
+	  		<button type="submit" id="submitbtnwl1" accesskey="s" ng-click="save_lock_wallet()" class="btn btn-info btn-xs"
+				ng-disabled="walletlockform1.$invalid">
+				<u><b>S</b></u>ave
+			</button>
+			<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_lock_wal()"><u><b>C</b></u>lear</a>
+			<img id="loaderwl1" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+	  </div>
+    </form>
+ <script>
+ $('#DOB1').datepicker('setDate','now');
+ 
+ </script>
+</div>

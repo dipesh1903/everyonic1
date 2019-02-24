@@ -1,0 +1,98 @@
+<br><div class="clearfix"></div><br>
+<div class="col-sm-12">
+	<div class="col-sm-2">
+		<label>Select Members:</label>
+	</div>
+   	<div class="col-sm-4">
+	   	<select ng-model="mx.mem_typ" name="mem_typ" class="form-control">
+		   	<option value="">--Select--</option>
+			<option value="ms" ng-if="login=='Admin'">Master</option>
+			<option value="ds" ng-if="login=='Admin'||login=='Master'">Distributor</option>
+			<option value="rt" ng-if="login=='Admin'||login=='Distributor'">Retailer</option>
+		</select>
+   	</div>
+   	<div class="col-md-12">
+		<button type="submit" id="submitbtnad" accesskey="s" ng-click="show_mem_detials(mx.mem_typ)" 
+			class="btn btn-info btn-xs"style="padding: 4px; font-size: 14px;">
+			<b>Show</b>
+		</button>
+		<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_mem_detials()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+		<img id="loaderad" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+	</div>
+</div>
+<div class="clearfix"></div><br>
+<div class="col-sm-12">
+	<div class="table_horizontal">
+		<div class="input-group custom_addon">
+        	<div class="input-group-addon"  style="box-shadow:none; -webkit-box-shadow:none;"><i class="fa fa-search"></i></div>
+				<input type="text" ng-model="search_text" placeholder="Search here...">
+		</div>
+	</div>
+	<div class="table-data">
+		<table class="table table-hover">
+			<thead>
+				<tr class="active">
+					<th >Name</th>
+                       <!--<th >Account type</th>-->
+                       
+                        <th>PSA ID</th>
+                       <th >Email</th>
+                       <th >Firm Name</th>
+                       <th >Gender</th>
+                       <th >Member Type</th>
+                       <th >Mobile</th>
+                       <th >Pin</th>
+                       <th >State</th>
+                       <th >City</th>
+                       <th >Address</th>
+                       <th >Status</th>
+					<th  style="width:85px">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr dir-paginate="y in datamem | filter: search_text | itemsPerPage: 10" pagination-id="membersid1">
+					<td >{{y.name}}</td>
+					<!--<td >{{y.acc_typ}}</td>-->
+					<td >{{y.psa_id}}</td>
+					<td >{{y.email}}</td>
+					<td >{{y.firmname}}</td>
+					<td >{{y.gender}}</td>
+					<td >
+						 <div ng-if="y.mem_typ=='ms'">Master</div>
+						 <div ng-if="y.mem_typ=='ds'">Distributor</div>
+						 <div ng-if="y.mem_typ=='rt'">Retailer</div>
+					</td>
+					<td >{{y.mob}}</td>
+					<td >{{y.pin}}</td>
+					<td >{{y.state}}</td>
+					<td >{{y.city}}</td>
+					<td >{{y.address}}</td>
+					<td ><div style="height:25px;width:25px;border-radius:50%;background:red" ng-if="y.status=='0'"></div><div style="height:25px;width:25px;border-radius:50%;background:green" ng-if="y.status=='1'"></div></td>
+					<td >
+					  <a href="javascript:void(0)" ng-click="update_call_mem(y)" data-toggle="modal" data-target=".bs-example-modal-sm">
+   						<span class="fa fa-pencil fa-2x"></span></a>
+   						&nbsp;&nbsp;&nbsp;
+   						<div ng-if="y.mem_typ=='ms'">
+   							<a href="javascript:void(0)" ng-click="delete_data(y.ms_id,y.mem_typ)">
+   							<span class="fa fa-trash"></span></a>
+   						</div>
+   						<div ng-if="y.mem_typ=='ds'">
+   							<a href="javascript:void(0)" ng-click="delete_data(y.ds_id,y.mem_typ)">
+   							<span class="fa fa-trash"></span></a>
+   						</div>
+   						<div ng-if="y.mem_typ=='rt'">
+   							<a href="javascript:void(0)" ng-click="delete_data(y.rt_id,y.mem_typ)">
+   							<span class="fa fa-trash"></span></a>
+   						</div>               
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+ 	<div class="col-sm-12"> 
+	 	<dir-pagination-controls boundary-links="true" pagination-id="membersid1"
+			on-page-change="pageChangeHandler(newPageNumber)"
+			template-url="app/dirPagination.tpl.html">
+		</dir-pagination-controls>
+ 	</div> 
+</div>

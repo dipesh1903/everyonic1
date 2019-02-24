@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="groveusCms">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="-1">
+<title>Kalpana Seva Online Recharge Portal</title>
+<link href="assets/css/main.css" rel="stylesheet"> 
+<link href="assets/css/avijeet.css" rel="stylesheet">
+<!--<link rel="icon" type="image/png" href="assets/logo/logo.jpg" />-->
+<!--<link href="assets/mat_css/mat_icon.css" rel="stylesheet">-->
+<style type="text/css">
+body{display:none}
+@media print {
+	aside, header, .col-lg-12, .myhead, hr {
+		display: none !important;
+	}
+	#printarea {
+		margin-top: -30px;
+		margin-left: -230px;
+	}
+}
+</style>
+<script src="assets/js/jquery.min.js"></script>
+<script>
+$.get("/api/index.php/dashboard/index", function(data, status){
+	if(data == 0){
+		window.location.assign('login.html');
+	}else {
+		if(!localStorage.getItem("usertype")){
+			$.get("/api/index.php/dashboard/fetch_userdata", function(data, status){
+				if(data.usertype == 'administrator') {
+					data.usertype = 'Administrator';
+					if(data.usertype)
+						localStorage.setItem("usertype", 'Administrator');
+				}else if(data.usertype == 'admin'){
+					data.usertype = 'Admin';
+					if(data.usertype)
+						localStorage.setItem("usertype", 'Admin');
+				}else if(data.usertype == 'ms'){
+					data.usertype = 'Master';
+					if(data.usertype)
+						localStorage.setItem("usertype", 'Master');
+				}else if(data.usertype == 'ds'){
+					data.usertype = 'Distributor';  
+					if(data.usertype)
+						localStorage.setItem("usertype", 'Distributor');
+				}else if(data.usertype == 'rt'){
+					data.usertype = 'Retailer';
+					if(data.usertype)
+						localStorage.setItem("usertype", 'Retailer');
+				}
+				if(data.username)
+					localStorage.setItem("username", data.username);
+				if(data.com_id)
+					localStorage.setItem("com_id", data.com_id);
+				if(data.mem_id)
+					localStorage.setItem("mem_id", data.mem_id);
+				$("#body").css('display', 'block');
+			}); 
+		}else{
+			dusertype = localStorage.getItem("usertype");
+			$("#body").css('display', 'block');
+			if(dusertype == 'Retailer' || dusertype == 'Master' || dusertype == 'Distributor'){
+				$('#setup_commision101').remove();
+			}
+			if(dusertype != 'Retailer'){
+				$('#pancard_coupon101').remove();
+			}
+			if(dusertype != 'Admin'){
+				$("#bankdetails101").remove();
+				$("#newscenter101").remove();
+			}
+		}
+	}
+});	
+  
+function logout()
+{
+	$.ajax({
+		type: "POST",
+		url:"/api/index.php/login/logout",
+// 		xhrFields: { withCredentials: true },
+		success: function(data)
+		{
+			window.localStorage.clear();
+			if(data=="0")
+			{
+				window.location.assign('login.html');
+			}
+		}
+	});
+}
+$.ajax({    
+    type: "GET",
+    url: "/api/index.php/pan_back/notify?status=0",             
+    success: function(response)
+    {  
+        $("#responsecontainer").html(response);
+        $("#dropresponsecontainer").html(response); 
+    }
+});
+$.ajax({    
+    type: "GET",
+    url: "/api/index.php/wallet_request_back/notify?status=0",             
+    success: function(response)
+    {  
+        $("#responsecontainer1").html(response);
+        $("#dropresponsecontainer1").html(response); 
+    }
+});
+</script>
+</head>
+<body hoe-navigation-type="vertical" hoe-nav-placement="left" theme-layout="wide-layout" 
+		class="view-animate-container" id="body">
+<div id="hoeapp-wrapper" class="hoe-hide-lpanel view-animate"
+		hoe-device-type="desktop">
+		<header id="hoe-header" hoe-lpanel-effect="default">
+			<div class="hoe-left-header">
+<!-- 				<a href="#"> <img id="logo1" src="assets/logo/log.jpg" style="display: inline-block">  -->
+<!-- 							<span> <img id="logo2" src="assets/logo/log.jpg" style="display: inline-block"></span> -->
+<!-- 				</a> -->
+			</div>
+			
+	<nav class="navbar navbar-inverse navbar-fixed-top" >
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       
+      <a class="navbar-brand" href="#">Kalpana Online Seva</a>
+      
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <span class="col-sm-offset-1 hoe-sidebar-toggle" ><a  href=""></a></span>
+      <ul class="nav navbar-nav pull-right ">
+        
+        <li class="dropdown">
+          <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"> <span><span class="fa fa-user">
+						</span><i class=" fa fa-angle-down"></i></span></a>
+          <ul class="dropdown-menu pull-right" aria-labelledby="dLabel">
+                <li><a href="#/profile_details"><i class="fa fa-user"></i>&nbsp;My Profile</a></li>
+                <li><a href="#/logs"><i class="fa fa-list"></i>View Logs</a></li>
+                <!--<li><a href="#/change_password"><i class="fa fa-lock"></i>Change Password</a></li>-->
+                <li><a onClick="logout()"><i class="fa fa-power-off"></i>Logout</a></li>
+          </ul>
+        </li>
+        
+        <!-- Balance Reques nhi araha tha
+        <li class="dropdown" id="display1" >
+        -->
+        <li class="dropdown" id="display1">
+         <a href="javascript:void(0)"  class="dropdown-toggle" data-toggle="dropdown"> <span><span class="fa fa-plus">
+						</span><span class="badge badge-light" id="responsecontainer1">0</span></a>
+          <ul class="dropdown-menu pull-right">
+            <li><a href="#/wallet_report" class="pull-left" >Balance Request<span class="badge badge-light" id="dropresponsecontainer1">0</span></a></li>
+            <li><a href="#/coupon_request" class="pull-left">Pancard Coupon Request<span class="badge badge-light" id="droppancardresponse">0</span></a></li>
+       `   </ul>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+				
+		</header>
+		<style>
+.panel-list li ul li 
+{
+	padding: 5px 20px 5px 20px;
+}
+/*.btn{ border-radius: 50%; width:32px; height:32px; line-height:18px;  }*/
+</style>
+		<div id="hoeapp-container"  hoe-lpanel-effect="default">
+			<aside class="" id="hoe-left-panel" hoe-position-type="absolute"
+				style="height: 50px; overflow: scroll" >
+<!-- 				<div class="profile-box "> -->
+<!-- 					<div class="media"> -->
+<!-- 						<a class="pull-left" href="#/home" style="text-decoration: none"> -->
+<!-- 							<div class="media-body"> -->
+<!-- 								<h5 class="media-heading"> -->
+<!-- 									Welcome! <b style="color: #06f" id="l_username2">Everyonic</b> -->
+<!-- 								</h5> -->
+<!-- 								<small style="color: #06f" id="l_usertype">Administrator</small> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+					
+					
+<!-- 				</div> -->
+				<div class="profile-box ">
+					<div class="desc-box">
+						<h5 class="pwrite text-center" ><span id="l_username1"></span></h5>
+						<p class="pwrite text-center"><span id="l_usertype"></span></p>
+					</div>
+				</div>
+				
+				
+				<!--<div class="row">
+					<div class="col-lg-12" style="padding:0;">
+						<div class="card hovercard">
+							<div class="cardheader">
+			
+							</div>
+							<div class="avatar">
+								<i class="fa fa-user-circle-o fa-3x"></i>
+							</div>
+							<div class="info">
+								<div class="title">
+									<a href="javascript:;" id="l_username1"></a>
+								</div>
+								<div class="desc"><span id="l_usertype"></span></div>
+							</div>
+							<div class="bottom">
+								<a href="javascript:;" class="btn btn-primary btn-sm" onClick="logout()"><i class="fa fa-power-off"></i>Logout</a>
+							</div>
+						</div>
+					</div>
+				</div>-->
+				  
+				<ul class="nav panel-list ">
+				<li class="active">
+					<a accesskey="a" href="#/home"><i class="fa fa-dashboard"></i>
+						<span class="menu-text">Dashbo<u><b>a</b></u>rd</span>
+						<span class="selected"></span>
+					</a>
+				</li>
+				<li>
+					<a id="createpassword101" accesskey="c" href="#/create_password">
+						<i class="fa fa-codepen" aria-hidden="true"></i> 
+						<span class="menu-text">Create Password</span> 
+						<span class="selected"></span>
+					</a>
+				</li>
+				<!--<li><a id="adminmaster101" accesskey="a" href="#/admin_master"> -->
+				<!--	<i class="fa fa-codepen" aria-hidden="true"></i> -->
+				<!--		<span class="menu-text">Add Admin</span> <span class="selected"></span>-->
+				<!--	</a>-->
+				<!--</li>  -->
+				<!--<li><a id="adminwallet101" accesskey="a" href="#/admin_wallet"> -->
+				<!--	<i class="fa fa-codepen" aria-hidden="true"></i> -->
+				<!--		<span class="menu-text">Admin Wallet</span> <span class="selected"></span></a>-->
+				<!--</li>       -->
+				<li><a id="member101" accesskey="m" href="#/master_management"> 
+					<i class="fa fa-codepen" aria-hidden="true"></i> 
+						<span class="menu-text">Members Management</span> <span class="selected"></span></a>
+				</li>
+				<li><a id="wallet101" accesskey="w" href="#/wallet"> 
+					<i class="fa fa-codepen" aria-hidden="true"></i> 
+					<span class="menu-text"> Wallet</span> <span class="selected"></span></a>
+				</li>
+				<li><a  id="walletloc101" accesskey="q" href="#/wallet_lock"> 
+					<i class="fa fa-codepen" aria-hidden="true"></i> 
+						<span class="menu-text"> Wallet Lock</span> <span class="selected"></span></a>
+				</li>
+				<li><a id="walletrequest101" accesskey="q" href="#/wallet_request"> 
+					<i class="fa fa-codepen" aria-hidden="true"></i> 
+						<span class="menu-text"> Wallet Request</span> <span class="selected"></span></a>
+				</li>
+				<li><a id="walletreport101" accesskey="q" href="#/wallet_report"> 
+					<i class="fa fa-codepen" aria-hidden="true"></i> 
+						<span class="menu-text"> Wallet Report</span> <span class="selected"></span></a>
+				</li>
+				<li><a id="service101" accesskey="s" href="#/service"> 
+					<i class="fa fa-codepen" aria-hidden="true"></i> 
+						<span class="menu-text"> Add Service</span> <span class="selected"></span></a>
+				</li>
+				<li><a id="package101" accesskey="p" href="#/package"> 
+					<i class="fa fa-codepen" aria-hidden="true"></i> 
+						<span class="menu-text"> Add package</span> <span class="selected"></span></a>
+				</li>
+				<li><a id="packageassigner101" accesskey="o" href="#/package_assigner"> 
+					<i class="fa fa-codepen" aria-hidden="true"></i> 
+						<span class="menu-text">Add Package Assigner</span> <span class="selected"></span></a>
+				</li>
+				<li>
+					<a id="operator101" accesskey="o" href="#/provider">
+						 <i class="fa fa-bullhorn" aria-hidden="true"> </i> 
+						 	<span class="menu-text"> Add Operator </span> 
+						 	<span class="selected"></span>
+				   </a>
+			   </li>
+			   <li>
+			   		<a id="recharge101" accesskey="o" href="#/recharge">
+						 <i class="fa fa-bullhorn" aria-hidden="true"> </i> 
+						 	<span class="menu-text"> Recharge </span> 
+						 	<span class="selected"></span>
+				   </a>
+			   </li>
+			   <li>
+		   		<a id="mobilereport101" accesskey="o" href="#/mobile_report">
+					 <i class="fa fa-bullhorn" aria-hidden="true"> </i> 
+					 	<span class="menu-text"> Mobile Report </span> 
+					 	<span class="selected"></span>
+			   </a>
+		   </li>
+		   <li>
+		   		<a id="dthreport101" accesskey="o" href="#/dth_report">
+					 <i class="fa fa-bullhorn" aria-hidden="true"> </i> 
+					 	<span class="menu-text"> DTH Report </span> 
+					 	<span class="selected"></span>
+			   </a>
+		   </li>
+		   
+		   <li><a data-toggle="collapse" data-target="#st" aria-expanded="false" aria-controls="st" accesskey="s" id="psa101"> 
+							<i class="fa fa-user"></i> <span class="menu-text">UTI Pan Card<i class="fa fa-sort-down right"></i>
+							</span> <span class="selected"></span>
+						</a>
+						<ul class="collapse" id="st">
+							<!--<li><a accesskey="g" href="#/staffs"> <i-->
+							<!--		class="fa fa-user-plus"></i> <span class="menu-text">&nbsp;&nbsp;&nbsp;&nbsp;Pan Details</span>-->
+							<!--		<span class="selected"></span></a></li>-->
+							<li><a accesskey="o" href="https://www.psaonline.utiitsl.com/psaonline/"> <i
+									class="fa fa-credit-card"></i> <span class="menu-text">&nbsp;&nbsp;&nbsp;&nbsp;Psa Login</span>
+									<span class="selected"></span></a></li>
+									
+							<li><a accesskey="o" href="https://www.trackpan.utiitsl.com/PANONLINE/trackApp#forward"> <i
+									class="fa fa-credit-card"></i> <span class="menu-text">&nbsp;&nbsp;&nbsp;&nbsp;Psa Card Track</span>
+									<span class="selected"></span></a></li>
+						</ul>
+			</li>
+		   
+<!-- 					<li><a accesskey="o" href="#/package_manager">  -->
+<!-- 						<i class="fa fa-codepen" aria-hidden="true"></i>  -->
+<!-- 						<span class="menu-text">Package Manager</span> <span class="selected"></span></a> -->
+<!-- 					</li> -->
+				<li><a id="smssend101" accesskey="o" href="#/sms">
+						 <i class="fa fa-bullhorn" aria-hidden="true"> </i> 
+						 	<span class="menu-text"> Send Sms </span> 
+						 	<span class="selected"></span>
+				   </a>
+			   </li>
+			   <li>
+					<a id="bankdetails101" accesskey="o" href="#/bank_details">
+						<i class="fa fa-bullhorn" aria-hidden="true"> </i> 
+						<span class="menu-text">Bank Details</span> 
+						<span class="selected"></span>
+					</a>
+				</li>
+			   <li>
+					<a id="newscenter101" accesskey="o" href="#/news_center">
+						<i class="fa fa-bullhorn" aria-hidden="true"> </i> 
+						<span class="menu-text">News</span> 
+						<span class="selected"></span>
+					</a>
+				</li>
+				<li>
+					<a id="pancard_coupon101" accesskey="o" href="#/pancard_coupon">
+						<i class="fa fa-bullhorn" aria-hidden="true"> </i> 
+						<span class="menu-text">Pancard Coupon</span> 
+						<span class="selected"></span>
+					</a>
+				</li>
+				<li>
+					<a id="setup_commision101" accesskey="o" href="#/setup_commission">
+						<i class="fa fa-bullhorn" aria-hidden="true"> </i> 
+						<span class="menu-text">Setup Commission</span> 
+						<span class="selected"></span>
+					</a>
+				</li>
+			   
+<!-- 				   <li><a accesskey="o" href="#/pancard"> <i -->
+<!-- 						class="fa fa-bullhorn" aria-hidden="true"></i> <span class="menu-text"> -->
+<!-- 						Pan Card </span> <span class="selected"></span></a> -->
+<!-- 					</li> -->
+<!-- 					<li><a accesskey="o" href="#/panreport"> <i -->
+<!-- 						class="fa fa-bullhorn" aria-hidden="true"></i> <span class="menu-text"> -->
+<!-- 						Pan Report </span> <span class="selected"></span></a> -->
+<!-- 					</li> -->
+<!-- 					<li><a accesskey="o" href="#/report"> <i -->
+<!-- 						class="fa fa-table" aria-hidden="true"></i> <span -->
+<!-- 						class="menu-text"> Report </span><span class="selected"></span></a> -->
+<!-- 					</li> -->
+<!-- 					<li><a accesskey="o" href="#/help"> <i -->
+<!-- 						class="fa fa-bullhorn" aria-hidden="true"></i> <span class="menu-text"> -->
+<!-- 						Help </span> <span class="selected"></span></a> -->
+<!-- 					</li> -->
+			</ul>
+			</aside>
+			<section id="main-content">
+				<span id="toggle_side_menu_show"></span>
+				<div ui-view>Loading page...</div>
+			</section>
+			
+			
+		</div>
+	</div>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/hoe.js"></script>
+	<script src="assets/js/ng/angular.min2.js"></script>
+	<script src="assets/js/ng/angular-ui-router.min.js"></script>
+	<script src="assets/js/ng/moment.js"></script>
+	<script src="assets/js/ng/dirPagination.js"></script>
+	<script src="assets/editor/summernote.min.js"></script>
+	<script src="assets/js/ng/angular-summernote.min.js"></script>
+	<script src="assets/js/jquery.form.js"></script>
+	<script src="assets/js/custom.js"></script>
+	<script src="assets/js/ng/typehead.min.js"></script>
+	<script src="assets/datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="assets/js/ng/angular-animate.min.js"></script>
+	<script src="assets/js/ng/rrule.js"></script>
+	<script src="app/app.js"></script>
+	<script src="assets/js/ng/helpers.js"></script>
+	<!-- Include all Editor plugins JS files. -->
+	<script type="text/javascript" src="assets/js/froala_editor.pkgd.min.js"></script>
+	<script type="text/javascript" src="assets/js/table.min.js"></script>
+	<script type="text/javascript" src="assets/js/colors.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="assets/js/telex.js"></script>
+	
+	
+	<script src="app/components/create_password/create_password.js"></script>
+	<script src="app/components/admin_master/admin_master.js"></script>
+	<script src="app/components/admin_wallet/admin_wallet.js"></script>
+	<script src="app/components/package/package.js"></script>
+	<script src="app/components/package_assigner/package_assigner.js"></script>
+	<script src="app/components/provider/provider.js"></script>
+	<script src="app/components/recharge/recharge.js"></script>
+	<script src="app/components/wallet_lock/wallet_lock.js"></script>
+	<script src="app/components/pancard/pancard.js"></script>
+	<script src="app/components/wallet/wallet.js"></script>
+	<script src="app/components/wallet_request/wallet_request.js"></script>
+	<script src="app/components/wallet_report/wallet_report.js"></script>
+	<script src="app/components/panreport/panreport.js"></script>
+ 	<script src="app/components/package_commission/package_commission.js"></script>
+	<script src="app/components/service/service.js"></script>
+	<script src="app/components/master_management/master_management.js"></script>
+	<script src="app/components/mobile_report/mobile_report.js"></script>
+	<script src="app/components/dth_report/dth_report.js"></script>
+	<script src="app/components/news_center/news_center.js"></script>
+	<script src="app/components/bank_details/bank_details.js"></script>
+	<script src="app/components/profile_details/profile_details.js"></script>
+	<script src="app/components/pancard_coupon/pancard_coupon.js"></script>
+	<script src="app/components/coupon_request/coupon_request.js"></script>
+	<script type="text/javascript" src="app/components/setup_commission/setup_commission.js"></script>
+<!-- 	<script src="app/components/report/report.js"></script> -->
+<!-- 	<script src="app/components/user_privileges/user_privileges.js"></script> -->
+	<script src="app/components/change_password/change_password.js"></script>
+	<script src="app/components/logs/logs.js"></script>
+<!-- 	<script src="app/components/help/help.js"></script> -->
+	<script src="app/components/sms/sms.js"></script>
+	<script src="assets/js/message.js"></script>
+	<script src="app/components/dashboard/dashboard.js"></script>
+	
+	
+<style>
+.modal {
+	background: rgba(14, 14, 14, 0.81);
+}
+</style>
+</body>
+</html>

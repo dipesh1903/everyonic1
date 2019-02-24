@@ -1,0 +1,64 @@
+<h4>Insaurance</h4>
+<div class="col-sm-12 well"><br>
+	<form name="insform" id="insform" method="post" action="" >
+		<div class="col-sm-6">
+			<div class="col-sm-4">
+				<label>Policy Number</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="i.p_no" name="p_no" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	
+		   		<div class="col-sm-4">
+				<label>Policy Holder Name</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="i.p_name" name="p_name" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	
+		   		<div class="col-sm-4">
+				<label>Mobile Mobile</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="i.number" name="number" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	
+		   		<div class="col-sm-4">
+				<label>Operator</label>
+			</div>
+		   	<div class="col-sm-8">
+				<select name="operator" ng-model="i.operator" required class="form-control">
+					<option value="">Select Operator</option>
+	                <option value="tsky">Tata Sky</option>
+				</select>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	
+		   	<div class="col-sm-4">
+				<label>Amount</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="i.amount" name="amount" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	
+			<div class="col-sm-4">
+				<label>Date Of Birth</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input name="dob" ng-model="i.dob" ng-change="get_days()" class="form-control"  id="DOB3" placeholder="dd/mm/yyyy" >
+		   	</div><div class="clearfix"></div><br>
+
+		<div class="col-md-12">
+				<button type="submit" id="submitbtnins" accesskey="s" ng-click="ins_save()" class="btn btn-info btn-xs"
+					ng-disabled="insform.$invalid" style="padding: 4px; font-size: 14px;">
+					<b>Submit</b>
+				</button>
+				<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_ins()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+				<img id="loader3" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+			</div>
+	</form>
+</div>

@@ -1,0 +1,77 @@
+<div class="col-sm-12">
+	<div class="heading text-center">
+		<h1>Pancard Request Notification</h1>
+	</div><br>
+	<div class="table_horizontal col-sm-10">
+		<div class="input-group custom_addon">
+			<div class="input-group-addon"  style="box-shadow:none; -webkit-box-shadow:none;">
+				<i class="fa fa-search"></i>
+			</div>
+			<input type="text" ng-model="search_text" placeholder="Search here...">
+		</div>
+	</div>
+	<div class="table-data">
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr class="active">
+					<th>ID</th>
+					<th>Created</th>
+					<th>Member Name</th>
+					<th>Member Balance</th>
+					<th>PSA ID</th>
+					<th>Coupons Requested</th>
+					<th>Status</th>
+					<th style="width:150px;">Give Coupons</th>
+					<th style="width:150px;">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr dir-paginate="y in datawal | filter: search_text | itemsPerPage: 10" pagination-id="paniddddd" >
+					<td>{{y.pr_id}}</td>
+					<td>{{y.created}}</td>
+					<td>{{y.retailer_name}}</td>
+					<td>{{y.net_wal}}</td>
+					<td>{{y.psa_id}}</td>
+					<td>{{y.no_of_coupons_requested}}</td>
+					<td>
+						<div class="ng-scope">
+							<label ng-if="y.coupon_request_status == '0'" class="label label-warning">Pending</label>
+						</div>
+						<div ng-if="y.coupon_request_status == '1'" class="ng-scope">
+							<label class="label label-success">Success</label>
+						</div>
+						<div ng-if="y.coupon_request_status == '2'" class="ng-scope">
+							<label class="label label-danger">Declined</label>
+						</div>
+					</td>
+					<td ng-if="y.coupon_request_status == '0'" class="ng-scope">
+						<select id="can_give_{{y.pr_id}}" name="can_give_{{y.pr_id}}" class="form-control">
+							<option value="">Select Number of Coupons</option>
+							<option ng-repeat="i in getNumber(y.can_give) track by $index" value="{{$index+1}}">{{$index+1}}</option>
+						</select>
+					</td>
+					<td ng-if="y.coupon_request_status == '1' || y.coupon_request_status == '2'" class="ng-scope">
+						{{y.no_of_coupons_added}}
+					</td>
+					<td ng-if="y.coupon_request_status == '0'" class="ng-scope">
+						<a href="javascript:void(0)" ng-click="respond_request_coupon(y, 1)">
+							<button type="button" class="btn btn-success btn-xs" class="accept_request_{{y.pr_id}}">Accept</button>
+						</a>				            
+						<a href="javascript:void(0)" ng-click="respond_request_coupon(y, 2)">
+							<button type="button" class="btn btn-danger btn-xs" class="decline_request_{{y.pr_id}}">Decline</button>
+						</a> 
+						<img id="loaderwalr{{y.pr_id}}" class="loadermas" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+					</td>
+					<td ng-if="y.coupon_request_status == '1'" class="ng-scope">
+						<label class="label label-success">Request Accepted</label>
+					</td>
+					<td ng-if="y.coupon_request_status == '2'" class="ng-scope">
+						<label class="label label-danger">Request Declined</label>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<dir-pagination-controls boundary-links="true" pagination-id="paniddddd" on-page-change="pageChangeHandler(newPageNumber)" template-url="app/dirPagination.tpl.html">
+	</dir-pagination-controls>
+</div>

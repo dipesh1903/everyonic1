@@ -1,0 +1,26 @@
+<div class="heading">
+  <ol class="breadcrumb">
+    <li><a href="#/">Dashboard</a></li>
+    <li><a href="javascript:void(0)">Admin Details</a></li>
+  </ol>
+</div>
+
+<div class="col-sm-12 well animated fadeIn">
+  <ul class="nav nav-tabs pg_naves" role="tablist">
+    <li role="presentation"  class="active">
+    	<a id="waladdform" data-target="#waladd" aria-controls="addform" role="tab" data-toggle="tab">Wallet Form</a>
+    </li>
+    <li role="presentation">
+    	<a id="walviewform" data-target="#walview" aria-controls="viewform" role="tab" data-toggle="tab">Member's Wallet Records</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane " id="walview">
+    	<div ng-include="'./app/components/wallet/data.html'"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane active" id="waladd">
+    	<div ng-include="'./app/components/wallet/form.html'"></div>
+    </div>
+  </div>  
+</div>

@@ -1,0 +1,60 @@
+<div class="col-sm-12 well"><br>
+	<form name="mobform1" id="mobform1" method="post" action="" >
+		<div class="col-sm-6"> 
+			<div class="col-sm-4">
+				<label>Mobile</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="m.mobile" name="mo_number" class="form-control" required>
+		   	</div> 
+		   	<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Amount</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="m.amount" name="amount" class="form-control" required>
+		   	</div><div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>Operator</label>
+			</div>
+			<div class="col-sm-8">
+				<select name="sercode" ng-model="m.operator" required class="form-control">
+					<option value="">Select Operator</option>
+	                <option value="AR">Airtel</option>
+	                <option value="BS">BSNL</option>
+	                <option value="ID">Idea</option>
+	                <option value="VF">Vodafone</option>
+	                <option value="RJ">Reliance JIO</option>
+	                <option value="TD">Tata Indicom</option>
+	                <option value="TI">Tata Docomo</option>
+	                <option value="AI">Aircel</option>
+	                <option value="TE">Telenor</option>
+	                <option value="VG">Virgin GSM</option>
+	                <option value="VC">VIRGIN CDMA</option>
+	                <option value="MTS">MTS</option>
+				</select>
+			</div>
+			<div class="clearfix"></div><br>
+				<div class="col-sm-4">
+				<label>Rechage Type</label>
+			</div>
+			<div class="col-sm-8">
+				<select name="stv" class="form-control" ng-model="m.stv" required>
+					<option value="">Select Recharge Type</option>
+	                <option value="0">Topup</option>
+	                <option value="1">Special Recharge</option>
+				</select>
+			</div>
+			<div class="clearfix"></div><br>
+			<div class="col-md-12">
+				<button type="submit" id="submitbtn1mob" accesskey="s" ng-click="save_mob_data()" class="btn btn-info btn-xs"
+					ng-disabled="mobform1.$invalid" style="padding: 4px; font-size: 14px;">
+					<b>Submit</b>
+				</button>
+				<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_data_recharge()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+				<img id="loader1mob" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+			</div>
+	</form>
+</div>
+   
+

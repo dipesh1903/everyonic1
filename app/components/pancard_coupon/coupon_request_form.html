@@ -1,0 +1,36 @@
+<br/>
+<div class="col-sm-12 well">
+	<form name="coupon_request_details_form" id="coupon_request_details_form" method="post" action="">
+		<div class="col-sm-6">
+			<div class="col-sm-4">
+				<label>Retailer Name</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="y.retailer_name" name="retailer_name" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>PSA ID</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="y.psa_id" name="psa_id" class="form-control" required>
+		   	</div><div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>No Of Coupons</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="y.no_of_coupons_requested" class="form-control" name="no_of_coupons_requested" value="1" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		</div>
+		<div class="col-md-12">
+			<button type="submit" id="coupon_request_details_button" accesskey="s" ng-click="coupon_request_details_save()" class="btn btn-info"
+				ng-disabled="coupon_request_details_form.$invalid">
+				<b>Make Request</b>
+			</button>
+			<a class="btn btn-default" accesskey="c" ng-click="filter_coupon_request_details()"><b>Clear</b></a>
+			<img class="loadermas" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+		</div>
+		<input type="hidden" ng-model="y.pr_id" name="pr_id" ng-init="" ng-value="y.pr_id"/>
+	</form>
+</div>

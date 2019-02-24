@@ -1,0 +1,116 @@
+<style type="text/css">
+.dbtn{
+	border-radius: 15px;
+	background-color: white;
+	color: black;
+	border: 2px solid #008CBA;
+}
+.dbbtn2{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 4px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+</style>
+<!-- Include Editor style. -->
+<link href='https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/css/froala_editor.min.css' rel='stylesheet' type='text/css' />
+<link href='https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/css/froala_style.min.css' rel='stylesheet' type='text/css' />
+<link href="assets/css/colors.css" rel="stylesheet">
+<!-- Include JS file. -->
+<div id="news_center">
+	<div ng-if="login=='Admin'">
+		<div class="heading row">
+			<div class="col-sm-4">
+				<ol class="breadcrumb" style="margin-top:5%;">
+					<li><a href="#/">Dashboard</a></li>
+					<li><a href="javascript:void(0)">Add/Edit News</a></li>
+				</ol>
+			</div>
+			<div class="col-sm-8">
+				<h3 style="margin-left: 43px;">Add/Edit News</h3>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="tab-content">
+		<div class="col-sm-12">
+			<div id="froala-editor"></div>
+			<div class="clearfix"></div><br>
+			<div class="col-sm-2">
+				<label>Show News</label>
+			</div>
+		   	<div class="col-sm-1">
+				<input name="show_this_news" id="show_this_news" type="checkbox" class="form-control">
+		   	</div>
+			<div class="clearfix"></div>
+			<div class="col-md-10">
+				<input type="hidden" id="ns_id" name="ns_id" value=""/>
+				<button type="button" id="savenews" accesskey="s" ng-click="save_news()" class="btn btn-info">
+					<b>Save News</b>
+				</button>
+				<img class="loadermas" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div><br>
+<div class="col-sm-12">
+	<div class="table_horizontal">
+		<div class="input-group custom_addon">
+        	<div class="input-group-addon"  style="box-shadow:none; -webkit-box-shadow:none;"><i class="fa fa-search"></i></div>
+				<input type="text" ng-model="search_text" placeholder="Search here...">
+		</div>
+	</div>
+	<div class="table-data">
+		<table class="table table-hover">
+			<thead>
+				<tr class="active">
+					<th>ID</th>
+					<th>Created</th>
+					<th>News</th>
+					<th style="width:150px">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr dir-paginate="y in news_details | filter: search_text | itemsPerPage: 10" pagination-id="membersid1">
+					<td>{{y.ns_id}}</td>
+					<td>{{ y.created | date:'MM/dd/yyyy' }}</td>
+					<td content-editable="true">{{y.news_text}}</td>
+					<td class="text-center">
+						<table>
+							<tr>
+								<td>
+									<a href="javascript:void(0)" ng-click="update_news_details(y, news_details.ut)" data-toggle="modal" data-target=".bs-example-modal-sm">
+										<span class="fa fa-pencil fa-2x"></span>
+									</a>
+								</td>
+								<td width="10">&nbsp;</td>
+								<td>
+									<div ng-if="news_details.ut == 'Admin'">
+										<a href="javascript:void(0)" ng-click="delete_news(y.ns_id, news_details.ut)">
+											<span class="fa fa-trash fa-2x"></span>
+										</a>
+									</div>
+								</td>
+							</tr>
+						</table>   						              
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+ 	<div class="col-sm-12"> 
+	 	<dir-pagination-controls boundary-links="true" pagination-id="membersid1"
+			on-page-change="pageChangeHandler(newPageNumber)"
+			template-url="app/dirPagination.tpl.html">
+		</dir-pagination-controls>
+ 	</div> 
+</div>

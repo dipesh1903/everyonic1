@@ -1,0 +1,58 @@
+<div class="col-sm-12 well">
+	<form name="bank_details_form" id="bank_details_form" method="post" action="">
+		<div class="col-sm-6">
+			<div class="col-sm-4">
+				<label>Bank Name</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="y.bank_name" name="bankname" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Account Number</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="y.account_number" name="account_number" class="form-control">
+		   	</div><div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>IFSC/NEFT CODE</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="y.ifsc_code" name="ifsc_neft_code" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		</div>
+		<div class="col-sm-6">
+			<div class="col-sm-4">
+				<label>Account Holder Name</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="y.account_holder_name" name="account_holder_name" class="form-control">
+		   	</div><div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Confirm Account Number</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="y.account_number" name="confirm_account_number" class="form-control">
+		   	</div>
+		   	<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Bank Address</label>
+			</div>
+		   	<div class="col-sm-8">
+				<textarea ng-model="y.bank_address" name="bank_address" class="form-control"></textarea>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-md-12">
+			<button type="submit" id="savebankdetails" accesskey="s" ng-click="save_bank_details()" class="btn btn-info"
+				ng-disabled="bank_details_form.$invalid">
+				<b>Add Details</b>
+			</button>
+			<a class="btn btn-default" accesskey="c" ng-click="filter_bank_detials()"><b>Clear</b></a>
+			<img class="loadermas" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+		</div>
+		<input type="hidden" ng-model="y.bd_id" name="bd_id" ng-init="" ng-value="y.bd_id"/>
+	</form>
+</div>

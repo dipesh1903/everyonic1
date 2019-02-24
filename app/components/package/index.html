@@ -1,0 +1,65 @@
+
+<div class="falana">
+<div class="heading">
+	<ol class="breadcrumb">
+		<li><a href="#/">Dashboard</a></li>
+		<li><a href="javascript:void(0)">package</a></li>
+	</ol>
+</div>
+<div class="heading">
+	<h1>Add Packages</h1>
+</div>
+
+<div class="col-sm-12 well"><br>
+	<form name="packageform" id="packageform" method="post" action="" >
+		<input name="id" ng-model="pac.pid" hidden>
+		<div class="col-sm-12">
+			<div class="col-sm-2">
+				<label>Select Service:</label>
+			</div>
+		   	<div class="col-sm-4">
+				<select ng-model="pac.ser_id" name="ser_id" class="form-control" style="width:92%" ">
+		            <option value="">--Select Services--</option>
+		            <option ng-repeat="d in service_details" value="{{d.ser_id}}">{{d.sname}}</option>
+          		</select>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+			<div class="col-sm-2">
+				<label>Enter Package Name:</label>
+			</div>
+		   	<div class="col-sm-4">
+				<input ng-model="pac.pname" name="name" class="form-control" required>
+		   	</div>
+		   		<div class="clearfix"></div><br>
+		   	<div ng-show="pac.id">
+		   		<div class="col-sm-2">
+					<label>Status:</label>
+				</div>
+				<div class="col-sm-4">
+			   		<input type="checkbox" ng-model="pac.status" ng-if="pac.status" style="width: 30px; height: 40px; border: 0px; shadow: none"
+						ng-true-value="'1'" ng-false-value="'0'"> 
+					<input ng-model="pac.status" name="status" hidden>
+				</div>
+		   	</div>
+			<div class="clearfix"></div><br>
+		</div>
+		<div class="clearfix"></div><br>
+		<div class="col-md-12">
+			<button type="submit" id="submitbtdp1" accesskey="s" ng-click="save_package_data()" class="btn btn-info btn-xs"
+				ng-disabled="packageform.$invalid" style="padding: 4px; font-size: 14px;">
+				<b>Submit</b>
+			</button>
+			<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_package()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+			<img id="loaderp1" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+		</div>
+	</form>
+	<div class="clearfix"></div><br>
+	<hr>
+	<div class="col-sm-12 well">
+		<div>
+			<div ng-include="'./app/components/package/data.html'"></div>
+		</div>
+	</div>
+	
+</div>
+</div>

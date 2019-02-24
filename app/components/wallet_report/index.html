@@ -1,0 +1,59 @@
+<div class="col-sm-12">
+	<div class="heading text-center">
+		<h1>Wallet Balance Pending Notification</h1>
+	</div><br>
+	<div class="table_horizontal col-sm-10">
+		<div class="input-group custom_addon">
+			<div class="input-group-addon"  style="box-shadow:none; -webkit-box-shadow:none;">
+				<i class="fa fa-search"></i>
+			</div>
+			<input type="text" ng-model="search_text" placeholder="Search here...">
+		</div>
+	</div>
+	<div class="table-data">
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr class="active">
+					<th>Member Name</th>
+					<th>Mobile</th>
+					<th>Member Type</th>
+					<th>Account No</th>
+					<th>Account Name</th>
+					<th>Amount</th>
+					<th>Transaction ID</th>
+					<th>Status</th>
+					<th style="width:150px">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr dir-paginate="y in datawal | filter: search_text | itemsPerPage: 10" pagination-id="paniddddd" class="wq_row_{{y.wq_id}}">
+					<td>{{y.name}}<input name="wq_id" class="wq_id" ng-model="y.wq_id" hidden>
+					<input name="mem_id" class="mem_id" ng-model="y.mem_id" hidden>
+					<input name="com_id" class="com_id" ng-model="y.com_id" hidden></td>
+					<td>{{y.mob}}</td>
+					<td ng-if="y.mem_typ=='ms'">Master</td>
+					<td ng-if="y.mem_typ=='ds'">Distributor</td>
+					<td ng-if="y.mem_typ=='rt'">Retailer</td>
+					<td>{{y.acc_no}}</td>
+					<td>{{y.acc_nam}}</td>
+					<td>{{y.amt}}</td>
+					<td>{{y.trans_id}}</td> 
+					<td ng-if="y.status==0"><label class="label label-warning">Pending</label></td>
+					<td ng-if="y.status==1"><label class="label label-warning">Success</label></td>
+					<td ng-if="y.status==2"><label class="label label-danger">Decline</label></td>
+					<td>
+						<a href="javascript:void(0)" ng-click="accept_request(y.wq_id, 1, y.mem_id, y.com_id, y.mem_typ, y.amt)" ng-if="y.status=='0'">
+							<button type="button" class="btn btn-success btn-xs">Accept</button>
+						</a>				            
+						<a href="javascript:void(0)" ng-click="decline(y.wq_id, 2, y.mem_id)" ng-if="y.status=='0'" >
+							<button type="button" class="btn btn-danger btn-xs">Decline</button>
+						</a> 
+						<img id="loaderwalr{{y.wq_id}}" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<dir-pagination-controls boundary-links="true" pagination-id="paniddddd" on-page-change="pageChangeHandler(newPageNumber)" template-url="app/dirPagination.tpl.html">
+	</dir-pagination-controls>
+</div>

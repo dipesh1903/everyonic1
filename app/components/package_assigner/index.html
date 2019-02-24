@@ -1,0 +1,68 @@
+<div class="heading">
+	<ol class="breadcrumb">
+		<li><a href="#/">Dashboard</a></li>
+		<li><a href="#/package">Package </a></li>
+	</ol>
+</div>
+<div class="heading">
+	<h1>Package Assigner</h1>
+</div>
+
+<div class="col-sm-12 well"><br>
+	<form name="passignform" id="passignform" method="post" action="" >
+		<input name="id" ng-model="sc.pac_ass_id" hidden>
+		<div class="col-sm-12">
+			<div class="col-sm-2">
+		        <label>Select Package:</label>
+		    </div>
+	      	<div class="col-sm-4">
+	      		<select ng-model="pa.pac_id" name="pac_id" class="form-control" style="width:92%">
+		            <option value="">--Select Packages--</option>
+		            <option ng-repeat="p in package_details" value="{{p.pid}}">{{p.pname}}</option>
+	          	</select>
+	      	</div>
+      		<div class="clearfix"></div><br>
+			<div class="col-sm-2">
+	        	<label>Select User Type:</label>
+	    	</div>
+    		<div class="col-sm-2" ng-hide="pa.ds_id||pa.rt_id">
+	      		<label>Master</label>
+	      		<select ng-model="pa.ms_id" name="ms_id" class="form-control" style="width:92%">
+	      			<option value="">--Select Master's--</option>
+		            <option value="a">ALL</option>
+		            <option ng-repeat="m in master_details" value="{{m.ms_id}}">{{m.name}}</option>
+	          	</select>
+	      	</div>
+	      	<div class="col-sm-2" ng-hide="pa.ms_id||pa.rt_id">
+	      		<label>Distributor</label>
+	      		<select ng-model="pa.ds_id" name="ds_id" class="form-control" style="width:92%">
+	      			<option value="">--Select Distributor's--</option>
+		            <option value="b"> All</option>
+		            <option ng-repeat="d in dist_details" value="{{d.ds_id}}">{{d.name}}</option>
+	          </select>
+	      	</div>
+	      	<div class="col-sm-2" ng-hide="pa.ms_id||pa.ds_id">
+	      		<label>Retailor</label>
+	      		<select ng-model="pa.rt_id" name="rt_id" class="form-control" style="width:92%">
+	      			<option value="">--Select Retailor's--</option>
+		            <option value="c">ALL</option>
+		            <option ng-repeat="r in ret_details" value="{{r.rt_id}}">{{r.name}}</option>
+	          </select>
+	      	</div>
+	      	<div><input name="mem_typ" ng-if="pa.ms_id" value="ms" hidden></div>
+	      	<div><input name="mem_typ" ng-if="pa.ds_id" value="ds" hidden></div>
+	      	<div><input name="mem_typ" ng-if="pa.rt_id" value="rt" hidden></div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-md-12">
+			<button type="submit" id="submitbtdpa1" accesskey="s" ng-click="save_pack_ass()" class="btn btn-info btn-xs"
+				ng-disabled="serviceform.$invalid" style="padding: 4px; font-size: 14px;">
+				<b>Submit</b>
+			</button>
+			<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_pac_ass()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+			<img id="loaderpa1" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+		</div>
+	</form>
+	<div class="clearfix"></div><br>
+	<hr><hr>
+</div>

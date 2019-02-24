@@ -1,0 +1,55 @@
+<div class="heading">
+	<h1>DTH Transaction View Records</h1>
+</div>
+<br><div class="clearfix"></div><br>
+<div class="col-sm-12">
+	<div class="table_horizontal">
+		<div class="input-group custom_addon">
+        	<div class="input-group-addon"  style="box-shadow:none; -webkit-box-shadow:none;"><i class="fa fa-search"></i></div>
+				<input type="text" ng-model="search_text" placeholder="Search here...">
+		</div>
+	</div>
+	<div class="table-data">
+		<table class="table table-hover">
+			<thead>
+				<tr class="active">
+					<th>Retailer ID</th>
+					<th>Retailer Name</th>
+                    <th >Member Type</th>
+                    <th >Customer Number</th>
+                    <th >Amount</th>
+                    <th >Service Code</th>
+                    <th >Transaction ID</th>
+                    <th >Transaction Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr dir-paginate="y in datadb | filter: search_text | itemsPerPage: 10" pagination-id="membersid1">
+					<td >{{y.mem_id}}</td>
+					<td >{{y.name}}</td>
+					<td >{{y.mem_typ}}</td>
+					<td >{{y.cust_no}}</td>
+					<td >{{y.amt}}</td>
+					<td >{{y.sercode}}</td>
+					<td >{{y.trans_id}}</td>
+					<td >
+						<div ng-if="y.trans_scode=='0'">
+							<div style="height:25px;width:25px;border-radius:50%;background:green" ></div>
+							<label style="color:green">SUCCESS</label>
+						</div>
+						<div ng-if="y.trans_scode!='0'">
+							<div style="height:25px;width:25px;border-radius:50%;background:red" ></div>
+							<label style="color:red">FAILED</label>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+ 	<div class="col-sm-12"> 
+	 	<dir-pagination-controls boundary-links="true" pagination-id="membersid1"
+			on-page-change="pageChangeHandler(newPageNumber)"
+			template-url="app/dirPagination.tpl.html">
+		</dir-pagination-controls>
+ 	</div> 
+</div>

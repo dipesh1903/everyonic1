@@ -1,0 +1,146 @@
+<h4>Electricity</h4>
+<div class="col-sm-12 well"><br>
+	<form name="ecform" id="ecform" method="post" action="" >
+		<div class="col-sm-6">
+			<div class="col-sm-4">
+				<label>Consumer Number</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="ec.con_no" name="c_no" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	
+		   		<div class="col-sm-4">
+				<label>Consumer Name</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="ec.c_name" name="c_name" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	
+		   		<div class="col-sm-4">
+				<label>Consumer Mobile</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="ec.c_mob" name="c_mob" class="form-control" required>
+		   	</div>
+		   <div class="clearfix"></div><br>
+		   		<div class="col-sm-4">
+				<label>Operator</label>
+			</div>
+		   	<div class="col-sm-8">
+				<select name="operator" ng-model="ec.operator" required class="form-control">
+					<option value="">Select Operator</option>
+	                <option value="PGVCL">PGVCL</option>
+	                <option value="MGVCL">MGVCL </option>
+	                <option value="UGVCL">UGVCL</option>
+	                <option value="DGVCL">DGVCL</option>
+	                <option value="TPB">TORRENT POWER</option>
+	                <option value="MSEDC">MSEDC LIMITED</option>
+	                <option value="APDC">APDCL RAPDR (ASSAM) </option>
+	                <option value="APDNR">APDCL-NON RAPDR (ASSAM)</option>
+	                <option value="BESC">BANGALORE ELECTRICITY SUPPLY COMPANY</option>
+	                <option value="BESL">BHARATPUR ELECTRICITY SERVICES LTD</option>
+	                <option value="BESL">BIKANER ELECTRICITY SUPPLY LIMITED (BKESL)</option>
+	                <option value="BMSTU">BRIHAN MUMBAI ELECTRIC SUPPLY AND TRANSPORT UNDERT</option>
+	                <option value="BSESR">BSES RAJDHANI</option>
+	                <option value="BSESY">BSES YAMUNA</option>
+	                <option value="CESL">CALCUTTA ELECTRICITY SUPPLY LTD (CESC LTD)</option>
+	                <option value="CSEB">CHHATTISGARH STATE ELECTRICITY BOARD</option>
+	                <option value="DDED">DAMAN AND DIU ELECTRICITY DEPARTMENT</option>
+	                <option value="DHBVN">DAKSHIN HARYANA BIJLI VITRAN NIGAM</option>
+	                <option value="DNHPD">DNH POWER DISTRIBUTION COMPANY LIMITED</option>
+	                <option value="EPDCA">EASTERN POWERDISTRIBUTION COMPANY OF ANDHRA PRADE </option>
+	                <option value="GESC">GULBARGA ELECTRICITY SUPPLY COMPANY LIMITED </option>
+	                <option value="IPCLB">INDIA POWER CORPORATION LIMITED - BIHAR</option>
+	                <option value="JUSC">JAMSHEDPUR UTILITIES AND SERVICES COMPANY LIMITED </option>
+	                <option value="JAVVN">JAIPUR AND AJMER VIYUT VITRAN NIGAM </option>
+	                <option value="JVVNL">JODHPUR VIDYUT VITRAN NIGAM LTD </option>
+	                <option value="JBVNL">JHARKHAND BIJLI VITRAN NIGAM LIMITED (JBVNL</option>
+	                <option value="MPPKV">MADHYA PRADESH PASCHIM KSHETRA VIDYUT VITARAN CO.</option>
+	                <option value="MPDC">MEGHALAYA POWER DISTRIBUTION CORPORATI ON LTD</option>
+	                <option value="MVVL">MUZAFFARPUR VIDYUT VITRAN LIMITED </option>
+	                <option value="NDPL">NORTH DELHI POWER LIMITED(TATA POWER - DDL) </option>
+	                <option value="NBPDC">NORTH BIHAR POWER DISTRIBUTION COMPANY LTD</option>
+	                <option value="NPCL">NOIDA POWER COMPANY LIMITED</option>
+	                <option value="MCOG">MUNICIPAL CORPORATION OF GURUGRAM</option>
+	                <option value="PSPCL">PUNJAB STATE POWER CORPORATION LTD (PSPCL)</option>
+	                <option value="RVVNL">RAJASTHAN VIDYUT VITRAN NIGAM LIMITED</option>
+	                <option value="SBPDC">SOUTH BIHAR POWER DISTRIBUTION COMPANY LTD</option>
+					<option value="SNDLN">SNDL NAGPUR</option>
+					<option value="SPDAP">SOUTHERN POWER DISTR OF ANDHRA PRADESH</option>
+					<option value="TSECL">TRIPURA STATE ELECTRICITY CORPORATION LTD</option>
+					<option value="TNEB">TAMIL NADU ELECTRICITY BOARD (TNEB)</option>
+					<option value="TPADL">TP AJMER DISTRIBUTION LTD</option>
+					<option value="TPM">TATA POWER  MUMBAI</option>
+					<option value="UHBVN">UTTAR HARYANA BIJLI VITRAN NIGAM </option>
+					<option value="UPCL">UTTARAKHAND POWER CORPORATION LIMITED</option>
+					<option value="UPPCL">UTTAR PRADESH POWER CORP LTD (UPPCL) - URBAN</option>
+					<option value="UPPCR">UTTAR PRADESH POWER CORP LTD (UPPCL) - RURAL</option>
+					<option value="WBSE">WEST BENGAL STATE ELECTRICITY </option>
+				</select>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   		<div ng-switch="ec.operator">
+		   	 	<div ng-switch-when="TPB">
+		   	 	<div class="col-sm-4">
+				<label>City</label>
+				</div>
+		   		<div class="col-sm-8">
+				<input ng-model="ec.FIELD1" name="FIELD1" class="form-control" required>
+		   	    </div>
+		   		</div>
+		   		
+		   		<div ng-switch-when="MSEDC">
+		   	 	<div class="col-sm-4">
+				<label>Billing Unit </label>
+				</div>
+		   		<div class="col-sm-8">
+				<input ng-model="ec.FIELD1" name="FIELD1" class="form-control" required>
+		   	    </div>
+		   	    <div class="col-sm-4">
+				<label>Cycle </label>
+				</div>
+		   		<div class="col-sm-8">
+				<input ng-model="ec.FIELD2" name="FIELD2" class="form-control" required>
+		   	    </div>
+		   		</div>
+		   		
+		   		<div ng-switch-when="JBVNL">
+		   	 	<div class="col-sm-4">
+				<label>Subdivision Code</label>
+				</div>
+		   		<div class="col-sm-8">
+				<input ng-model="ec.FIELD1" name="FIELD1" class="form-control" required>
+		   	    </div>
+		   		</div>
+		   		</div>
+		   	<div class="col-sm-8" ng-if="TPB">
+				<input ng-model="ec.REFMOBILENO" name="REFMOBILENO" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>Amount</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="ec.amount" name="amount" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	
+			<div class="col-sm-4">
+				<label>Date</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input name="date" ng-model="x.date" ng-change="get_days()" data-provide="datepicker" class="form-control"  id="DOB3" placeholder="dd/mm/yyyy" >
+		   	</div><div class="clearfix"></div><br>
+
+		<div class="col-md-12">
+				<button type="submit" id="submitbtnec" accesskey="s" ng-click="elc_save()" class="btn btn-info btn-xs"
+					ng-disabled="mobform.$invalid" style="padding: 4px; font-size: 14px;">
+					<b>Submit</b>
+				</button>
+				<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_elc()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+				<img id="loader3" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+			</div>
+	</form>
+</div>

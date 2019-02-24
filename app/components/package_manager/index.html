@@ -1,0 +1,60 @@
+<div class="heading">
+	<ol class="breadcrumb">
+		<li><a href="#/">Dashboard</a></li>
+		<li><a href="javascript:void(0)">package_manager</a></li>
+	</ol>
+</div>
+<div class="heading">
+	<h1>Package Manager</h1>
+</div>
+
+<div class="col-sm-12 well"><br>
+		<input name="id" ng-model="pac.id" hidden>
+		<div class="col-sm-12">
+			<div class="col-sm-2">
+				<label>Package Manager:</label>
+			</div>
+		 
+			<div class="clearfix"></div><br>
+				<div class="table-data">
+			<table class="table table-hover">
+				<thead>
+					<tr class="active">
+						<th >Package ID</th>
+						<th >Package Name</th>
+						<th >Service Name</th>
+						<th >Package Date Created</th>
+                        <th >Status</th>
+                        <th >View </th>
+                        <th >Edit</th>
+                        <th >Delete</th>
+					<!-- 	<th  style="width:85px">Action</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr dir-paginate="y in datadb | filter: search_text | itemsPerPage: 5" pagination-id="pacid">
+						<td >{{y.id}}</td>
+						<td >{{y.pname}}</td>
+						<td >{{y.sname}}</td>
+						<td >{{y.time}}</td>
+						<td ><div style="height:25px;width:25px;border-radius:50%;background:red" ng-if="y.status=='0'"></div><div style="height:25px;width:25px;border-radius:50%;background:green" ng-if="y.status=='1'"></div></td>
+						<td> <a href="javascript:void(0)" ng-click="set(y)" data-toggle="modal" data-target=".bs-example-modal-sm">
+    						<span class="fa fa-eye fa-2x"></span></a></td>
+						<td >
+						  <a href="javascript:void(0)" ng-click="update_call(y)" data-toggle="modal" data-target=".bs-example-modal-sm">
+    						<span class="fa fa-pencil fa-2x"></span></a>
+    						</td>
+    						<td>
+    						&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" ng-click="delete_data(y.pac_id)">
+    						<span class="fa fa-trash"></span></a>               
+						</td>
+					</tr>
+				</tbody>
+			</table>
+        </div>
+		</div>
+		<div class="clearfix"></div><br>
+	<hr>
+	
+	
+</div>

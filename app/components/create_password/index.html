@@ -1,0 +1,97 @@
+<div class="heading">
+	<ol class="breadcrumb">
+		<li><a href="#/">Dashboard</a></li>
+		<li><a href="javascript:void(0)">Create Password</a></li>
+	</ol>
+</div>
+<div class="heading">
+	<h1>Password Setting</h1>
+</div>
+<div class="col-sm-12 well animated fadeIn">
+	<form name="passwordform" id="passwordform" method="post" action="">
+    	<input name="id" ng-model="cp.auto_id" hidden>
+	      <div class=clearfix"></div><br>
+		       <div class="col-sm-2">
+			  	<label>Select UserType:</label>
+			  </div>
+			  <div class="col-sm-4">
+	     	 	<select ng-model="cp.usertype" name="usertype"  class="form-control" >
+	     	  		<option value="">Select User Type</option>
+			         <option value="ms" ng-if="login=='Admin'">Master</option>
+			         <option value="ds" ng-if="login=='Admin' || login=='Master'">Distributor</option>
+			         <option value="rt" ng-if="login=='Admin' || login=='Distributor'">Retailer</option>
+	          	</select>
+		      </div>
+	      <div class=clearfix"></div><br>
+	      <div class="col-sm-12">
+		      <div ng-switch ="cp.usertype">
+		      	<div ng-switch-when="ms">
+			      	<div class="col-sm-2" ng-if="login=='Admin'">
+		      			<label >Master</label>
+			      		<select ng-model="cp.ms_id" name="ms_id"  class="form-control">
+			      			<option value=""> Select Master</option>
+				            <option ng-repeat="ms in master_details" value="{{ms.ms_id}}">{{ms.name}}</option>
+			          	</select>
+			      	</div>
+		      	</div>
+		      	<div ng-switch-when="ds">
+			      	<div class="col-sm-2" ng-if="login=='Admin'|| login=='Master'">
+			      		<label >Distributor</label>
+			      		<select ng-model="cp.ds_id" name="ds_id"  class="form-control">
+			      			<option value=""> Select Distributor</option>
+				            <option ng-repeat="d in dist_details" value="{{d.ds_id}}">{{d.name}}</option>
+			          </select>
+			      	</div>
+		      	</div>
+		      	<div ng-switch-when="rt">
+			      	<div class="col-sm-2" ng-if="login=='Admin'||login=='Master'||login=='Distributor'">
+			      		<label >Retailer</label>
+			      		<select ng-model="cp.rt_id" name="rt_id"  class="form-control">
+			      			<option value=""> Select Retailer</option>
+				            <option ng-repeat="r in ret_details" value="{{r.rt_id}}">{{r.name}}</option>
+			          </select>
+			      	</div>
+		      </div>
+		  	</div>
+	      </div>
+	      <div class="clearfix"></div><br>
+	      <div class="col-sm-2">
+		  	<label>Create User Name:</label>
+		  </div>
+		  <div class="col-sm-4">
+		  	<input ng-model="cp.username" name="username" class="form-control" required>
+		  </div>
+	      <div class="clearfix"></div><br>
+	      <div class="col-sm-2">
+		  	<label>Create Password:</label>
+		  </div>
+		  <div class="col-sm-4">
+		  	<input type="password" ng-model="cp.password" name="password" class="form-control" required>
+		  </div>
+		   <div class="clearfix"></div><br>
+	      <div class="col-sm-2">
+		  	<label>Confirm Password:</label>
+		  </div>
+		  <div class="col-sm-4">
+		  	<input type="password"  name="confpass" class="form-control" required>
+		  </div>
+		  <div class="clearfix"></div><br>
+		  <div class="col-sm-2" ng-if="cp.status">
+		  	<label>Status</label>
+		  </div>
+		  <div class="col-sm-4">
+		  	<input type="checkbox" ng-model="cp.status" ng-if="cp.status"
+					style="width: 30px; height: 40px; border: 0px; shadow: none"
+					ng-true-value="'1'" ng-false-value="'0'"> 
+			<input ng-model="cp.status" name="status" hidden>
+		  </div>
+	      <div class="col-md-12">
+		  		<button type="submit" id="submitbtncp1" accesskey="s" ng-click="save_crpass()" class="btn btn-info"
+					ng-disabled="passwordform.$invalid">
+					<u><b>S</b></u>ave
+				</button>
+				<a class="btn btn-default" accesskey="c" ng-click="filter_pass()"><u><b>C</b></u>lear</a>
+				<img id="loadercp1" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+		  </div>
+    </form>
+</div>

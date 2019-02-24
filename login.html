@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kalpana Seva Online Recharge Portal</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="./assets/js/loginjs.js"></script>
+    <script>
+    localStorage.clear();
+    function check(){
+    	url="/api/index.php/login/check";
+    	$.ajax({
+    		type: "POST",
+    		url: url,
+     		xhrFields: { withCredentials: false },
+    		data: $("#lform").serialize(),
+    		beforeSend: function()
+    		{
+    			$("#res").html('');
+    			$('#myButton').attr('disabled',true);
+    			document.getElementById('myButton').innerText ='Verifying...';
+    		},
+    		success: function(data)
+    		{
+    			$("#res").html(data.msg);
+    			if(data.type=="0")
+    			{
+    				window.location.assign('index.html');
+    			}
+    			$('#myButton').attr('disabled',false);
+    			document.getElementById('myButton').innerText ='Login';
+    		}
+    	});
+    }
+    </script>
+</head>
+<style> 
+/*body, html {
+  height: 100%;
+  margin: 0;
+}
+.bg {
+  background-image: url("./assets/images/parisheban_login_ page.jpg");
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}*/
+body {
+	background: #DCDDDF url(about-bg.jpg);
+	color: #000;
+	font: 14px Arial;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.container { margin: 115px auto; position: relative; width: 900px; }
+#content {
+	background: #f9f9f9;
+	background: -moz-linear-gradient(top,  rgba(248,248,248,1) 0%, rgba(249,249,249,1) 100%);
+	background: -webkit-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
+	background: -o-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
+	background: linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f8f8', endColorstr='#f9f9f9',GradientType=0 );
+	-webkit-box-shadow: 0 1px 0 #fff inset;
+	-moz-box-shadow: 0 1px 0 #fff inset;
+	-ms-box-shadow: 0 1px 0 #fff inset;
+	-o-box-shadow: 0 1px 0 #fff inset;
+	box-shadow: 0 1px 0 #fff inset;
+	border: 1px solid #c4c6ca;
+	margin: 0 auto;
+	padding: 25px 0 0;
+	position: relative;
+	text-align: center;
+	text-shadow: 0 1px 0 #fff;
+	width: 400px;
+}
+#content h1 {
+	color: dimgrey;
+	font: bold 25px Copperplate, "Copperplate Gothic Light", fantasy;
+	letter-spacing: -0.05em;
+	line-height: 20px;
+	margin: 10px 0 30px;
+}
+#content h1:before,
+#content h1:after {
+	content: "";
+	height: 1px;
+	position: absolute;
+	top: 10px;
+	width: 27%;
+}
+#content h1:after {
+	background: rgb(126,126,126);
+	background: -moz-linear-gradient(left,  rgba(126,126,126,1) 0%, rgba(255,255,255,1) 100%);
+	background: -webkit-linear-gradient(left,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
+	background: -o-linear-gradient(left,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
+	background: -ms-linear-gradient(left,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
+	background: linear-gradient(left,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
+    right: 0;
+}
+#content h1:before {
+	background: rgb(126,126,126);
+	background: -moz-linear-gradient(right,  rgba(126,126,126,1) 0%, rgba(255,255,255,1) 100%);
+	background: -webkit-linear-gradient(right,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
+	background: -o-linear-gradient(right,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
+	background: -ms-linear-gradient(right,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
+	background: linear-gradient(right,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
+    left: 0;
+}
+#content:after,
+#content:before {
+	background: #f9f9f9;
+	background: -moz-linear-gradient(top,  rgba(248,248,248,1) 0%, rgba(249,249,249,1) 100%);
+	background: -webkit-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
+	background: -o-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
+	background: linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f8f8', endColorstr='#f9f9f9',GradientType=0 );
+	border: 1px solid #c4c6ca;
+	content: "";
+	display: block;
+	height: 100%;
+	left: -1px;
+	position: absolute;
+	width: 100%;
+}
+#content:after {
+	-webkit-transform: rotate(2deg);
+	-moz-transform: rotate(2deg);
+	-ms-transform: rotate(2deg);
+	-o-transform: rotate(2deg);
+	transform: rotate(2deg);
+	top: 0;
+	z-index: -1;
+}
+#content:before {
+	-webkit-transform: rotate(-3deg);
+	-moz-transform: rotate(-3deg);
+	-ms-transform: rotate(-3deg);
+	-o-transform: rotate(-3deg);
+	transform: rotate(-3deg);
+	top: 0;
+	z-index: -2;
+}
+#content form { margin: 0 20px; position: relative }
+#username { background-position: 10px 10px !important }
+#password { background-position: 10px -53px !important }
+
+#content form div a {
+	color: #004a80;
+    float: right;
+    font-size: 12px;
+    margin: 30px 15px 0 0;
+    text-decoration: underline;
+}
+</style>
+<body hoe-navigation-type="vertical" hoe-nav-placement="left" theme-layout="wide-layout" class="view-animate-container bg">
+<!--<div>
+
+<br><br><br><br> 
+<div class=" col-sm-4 col-sm-offset-4  animated fadeIn" style="background:#83e8edad;padding:50px">
+<h2 align="center" style="font-family: monospace;font-size: 20px;">Welcome To</h2>
+<h2 align="center" style="font-family: monospace;font-size: 30px;"><b>KALPANA ONLINE SEVA</b> </h2>
+<br>
+<form class="form-horizontal" action="" method="post" id="lform" onSubmit="return false">
+<div class="alert alert-info">Please login with your Username and Password.</div>		
+
+<div class="form-group">  
+<label type="text" for="name" class="col-lg-4 control-label" style="color: #0095c2;"><i class="w3-xxlarge fa fa-user"></i></label>  
+<div class="col-lg-8">  
+<input class="form-control span10" name="user"  autofocus id="username" placeholder="Username" type="text"/> 
+</div>  
+</div>  
+<div class="form-group">  
+<label for="email" class="col-lg-4 control-label" style="color: #0095c2;"><i class="w3-xxlarge fa fa-key"></i></label>  
+<div class="col-lg-8">  
+<input class="form-control span10" name="pass"  id="password" type="password" placeholder="Password"/> 
+</div>  
+</div> 
+<div id="res"></div>
+<p class="col-sm-6 col-sm-offset-3">
+<button type="submit" class="btn btn-info btn-block" onClick="check()" id="myButton">Login</button>
+</p>
+</form>			
+</div>
+</div>-->
+<div class="container">
+	<section id="content">
+		<h1>KALPANA ONLINE SEVA</h1>
+		<form class="form-horizontal" action="" method="post" id="lform" onSubmit="return false">
+			<h1>Login Form</h1>
+			<!--<div>
+				<input type="text" name="user" class="form-control" autofocus placeholder="Username" required="" id="username" />
+			</div>
+			<div>
+				<input type="password" placeholder="Password" class="form-control" required="" name="pass"  id="password" />
+			</div>-->
+			<div class="form-group">
+				<div class="col-sm-12">
+				  <input type="text" name="user" class="form-control" autofocus placeholder="Username" required="" id="username">
+				</div>
+			  </div>
+			  <div class="form-group">
+				<div class="col-sm-12">
+				  <input type="password" placeholder="Password" class="form-control" required="" name="pass"  id="password">
+				</div>
+			  </div>
+			<div>
+				<button class="btn btn-primary btn-block" onClick="check()" id="myButton" type="submit"><i class="fa fa-login"></i> Login</button>
+			</div>
+			<p>&nbsp;</p>
+			<div id="res"></div>
+			<p>&nbsp;</p>
+		</form><!-- form -->
+	</section><!-- content -->
+</div><!-- container -->
+</body>
+</html>

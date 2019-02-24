@@ -1,0 +1,93 @@
+<div class="col-sm-12 well" >
+	<form name="adminform" id="adminform" method="post" action="" >
+		<input name="id" ng-model="a.admin_id" hidden>
+		<div class="col-sm-6">
+			<div class="col-sm-4">
+				<label>Company Name</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="a.company_name" name="company_name" class="form-control" >
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label> Name</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="a.name" name="name" class="form-control" >
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		  
+		   	<div class="col-sm-4">
+				<label>Gender</label>
+			</div>
+		   	<div class="col-sm-8">
+		   		<select ng-model="a.gender" name="gender" class="form-control">
+		   			<option value="">--Select Gender--</option>
+					<option value="M">Male</option>
+					<option value="F">Female</option>
+				</select>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>Email</label>
+			</div>
+		   	<div class="col-sm-8">
+		   		<input ng-model="a.email" name="email" class="form-control">
+		   	</div>
+		</div>
+		<div class="col-sm-6">
+		   	<div class="col-sm-4">
+				<label>Pan Card No</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="a.pan" name="pan" class="form-control" >
+		   	</div>
+		   	<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Address</label>
+			</div>
+		   	<div class="col-sm-8">
+		   		<textarea ng-model="a.address" name="address" class="form-control" ></textarea>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>City</label>
+			</div>
+		   	<div class="col-sm-8">
+		   		<input ng-model="a.city" name="city" class="form-control" >
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>State</label>
+			</div>
+		   	<div class="col-sm-8">
+		   		<input ng-model="a.state" name="state" class="form-control">
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>Phone No</label>
+			</div>
+		   	<div class="col-sm-8">
+		   		<input ng-model="a.phone" name="phone" class="form-control" >
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	<div class="col-sm-2" ng-if="a.admin_id">
+				<label>Status</label>
+			</div>
+			<div class="col-sm-4">
+				<input type="checkbox" ng-model="a.status" ng-if="a.status"
+					style="width: 30px; height: 40px; border: 0px; shadow: none"
+					ng-true-value="'1'" ng-false-value="'0'"> 
+				<input ng-model="x.status" name="status" hidden>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<button type="submit" id="submitbtnad" accesskey="s" ng-click="save_admin_data()" class="btn btn-info btn-xs"
+				ng-disabled="mobform.$invalid" style="padding: 4px; font-size: 14px;">
+				<b>Submit</b>
+			</button>
+			<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_admin_data()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+			<img id="loaderad" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+		</div>
+	</form>
+</div>

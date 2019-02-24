@@ -1,0 +1,149 @@
+<br><div class="col-sm-12 well">
+	<h1 style="text-align:center;margin-top:-19px;">Add Distributor's</h1><br>
+	<form name="distform" id="distform" method="post" action="" >
+		<div class="col-sm-6">
+			<div ng-show="login=='Admin'">
+				<div class="col-sm-4">
+					<label>Master Members</label>
+				</div>
+				<div class="col-sm-8">
+					<select name="ms_id" ng-model="d.ms_id"  class="form-control">
+						<option value="">Select Member Type</option>
+		             <option ng-repeat="m in master_details" value="{{m.ms_id}}">{{m.name}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="clearfix"></div><br>
+		
+			<div class="col-sm-4">
+				<label>Name</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="d.name" name="name" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Email</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="d.email" name="email" class="form-control">
+		   	</div><div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Mobile</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="d.mob" name="mob" class="form-control">
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>Address</label>
+			</div>
+		   	<div class="col-sm-8">
+				<textarea ng-model="d.address" name="address" class="form-control"></textarea>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>Gender</label>
+			</div>
+			<div class="col-sm-8">
+				<select name="gender" ng-model="d.gender" required
+					class="form-control">
+					<option value="">Select Gender</option>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select>
+			</div>
+		   	<div class="clearfix"></div><br>
+		   	<div ng-show="d.username">
+		   		<div class="col-sm-4">
+					<label>UserName</label>
+				</div>
+				<div class="col-sm-8">
+					<input ng-model="d.username" class="form-control" readonly>
+				</div>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	<div ng-show="d.password">
+		   		<div class="col-sm-4">
+					<label>Password</label>
+				</div>
+				<div class="col-sm-8">
+					<input ng-model="d.password" class="form-control" name="password">
+				</div>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		</div>
+		<div class="col-sm-6">
+		 <!--	<div class="col-sm-4">-->
+			<!--	<label>Account Type</label>-->
+			<!--</div>-->
+			<!--<div class="col-sm-8">-->
+			<!--	<select name="acc_typ" ng-model="d.acc_typ" required-->
+			<!--		class="form-control">-->
+			<!--		<option value="">Select Type</option>-->
+			<!--		<option value="Savings">Savings</option>-->
+			<!--		<option value="Current">Current</option>-->
+			<!--	</select>-->
+			<!--</div>-->
+				<div class="col-sm-4">
+				<label>Adhar Card No</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="d.adh_no" name="adh_no" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   		<div class="col-sm-4">
+				<label>Firm Name</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="d.firmname" name="firmname" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+			<!--<div class="col-sm-4">-->
+			<!--	<label>Account Number</label>-->
+			<!--</div>-->
+		 <!--  	<div class="col-sm-8">-->
+			<!--	<input ng-model="d.acc_no" name="acc_no" class="form-control">-->
+		 <!--  	</div>-->
+		    <div class="col-sm-4">
+				<label>Pan Number</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="d.pn_no" name="pn_no" class="form-control">
+		   	</div>
+		   	<div class="clearfix"></div><br>
+		   	
+		 	<div class="col-sm-4">
+				<label>State</label>
+			</div>
+			<div class="col-sm-8">
+				<input ng-model="d.state" name="state" class="form-control">
+			</div>
+		   	<div class="clearfix"></div><br>
+		   		<div class="col-sm-4">
+				<label>City</label>
+			</div>
+			<div class="col-sm-8">
+				<input ng-model="d.city" name="city" class="form-control">
+			</div>
+		   	<div class="clearfix"></div><br>
+		   		<div class="col-sm-4">
+				<label>Pincode</label>
+			</div>
+			<div class="col-sm-8">
+				<input ng-model="d.pin" name="pin" class="form-control">
+			</div>
+		   	<div class="clearfix"></div><br>
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-md-12">
+			<button type="submit" id="submitbtn2dis" accesskey="s" ng-click="save_data_dis()" class="btn btn-info"
+				ng-disabled="disform.$invalid">
+				<b>Add Member</b>
+			</button>
+			<a class="btn btn-default" accesskey="c" ng-click="filter_mem_detials()"><b>Clear</b></a>
+			<img id="loader1dist" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+		</div>
+		<input type="hidden" ng-model="d.ds_id" name="ds_id" ng-init="" ng-value="d.ds_id"/>
+	</form>
+</div>

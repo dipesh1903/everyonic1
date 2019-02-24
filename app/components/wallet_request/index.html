@@ -1,0 +1,71 @@
+<div class="heading">
+	<ol class="breadcrumb">
+		<li><a href="#/">Dashboard</a></li>
+		<li><a href="javascript:void(0)">Wallet Request</a></li>
+	</ol>
+</div>
+<div class="heading text-center">
+	<h1>Wallet Request Form</h1>
+</div>
+
+<div class="col-sm-12 well"><br>
+	<form name="wqform" id="wqform" method="post" action="" >
+		<div class="col-sm-6">
+			<div class="col-sm-4">
+				<label>Account No <br> <small>(Admin Account No)</small></label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="wr.acc_no" name="acc_no" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Account Name</label>
+			</div>
+			<div class="col-sm-8">
+				<input ng-model="wr.acc_nam" name="acc_nam" class="form-control" required>
+		   	</div>
+			<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Amount</label>
+			</div>
+			<div class="col-sm-8">
+				<input ng-model="wr.amt" name="amt" class="form-control" required>
+		   	</div>
+			<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Payment Mode</label>
+			</div>
+			<div class="col-sm-8">
+				<select ng-model="wr.p_mde" name="p_mde" class="form-control" >
+				    <option value="">---</option>
+				    <option value="IMPS">IMPS</option>
+				    <option value="NEFT">NEFT</option>
+				    <option value="RTGS">RTGS</option>
+				</select>
+		   	</div>
+			<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Payment Date</label>
+			</div>
+			<div class="col-sm-8">
+				<input type="date" ng-model="wr.p_dte" name="p_dte" class="form-control" required>
+		   	</div>
+			<div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>Transaction ID</label>
+			</div>
+			<div class="col-sm-8">
+				<input ng-model="wr.trans_id" name="trans_id" class="form-control" required>
+		   	</div>
+			<div class="clearfix"></div><br>
+
+		<div class="col-md-12">
+				<button type="submit" id="submitbtn1wreq" accesskey="s" ng-click="save_wr_data()" class="btn btn-info btn-xs"
+					ng-disabled="mobform.$invalid" style="padding: 4px; font-size: 14px;">
+					<b>Submit</b>
+				</button>
+				<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_wr_data()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+				<img id="loader1wreq" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+			</div>
+	</form>
+</div>

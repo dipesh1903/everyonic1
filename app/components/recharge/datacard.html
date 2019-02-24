@@ -1,0 +1,38 @@
+<h4>Datacard</h4>
+<div class="col-sm-12 well"><br>
+	<form name="dcform" id="dcform" method="post" action="" >
+		<div class="col-sm-6">
+			<div class="col-sm-4">
+				<label>Enter Number</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="dc.d_no" name="d_no" class="form-control" required>
+		   	</div>
+		   	<div class="clearfix"></div><br>
+			<div class="col-sm-4">
+				<label>Amount</label>
+			</div>
+		   	<div class="col-sm-8">
+				<input ng-model="dc.amount" name="amount" class="form-control">
+		   	</div><div class="clearfix"></div><br>
+		   	<div class="col-sm-4">
+				<label>Operator</label>
+			</div>
+			<div class="col-sm-8">
+				<select name="operator" ng-model="dc.operator" required class="form-control">
+					<option value="">Select Operator</option>
+	                <option value="dc">Datacard</option>
+				</select>
+			</div>
+			<div class="clearfix"></div><br>
+
+		<div class="col-md-12">
+				<button type="submit" id="submitbtndc" accesskey="s" ng-click="save_dc_data()" class="btn btn-info btn-xs"
+					ng-disabled="mobform.$invalid" style="padding: 4px; font-size: 14px;">
+					<b>Submit</b>
+				</button>
+				<a class="btn btn-default btn-xs" accesskey="c" ng-click="filter_dc_data()" style="padding: 4px; font-size: 14px;"><b>Clear</b></a>
+				<img id="loader" src="./assets/images/loaders/1.gif" style="height:25px;display:none">
+			</div>
+	</form>
+</div>

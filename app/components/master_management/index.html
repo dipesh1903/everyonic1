@@ -1,0 +1,68 @@
+<style>
+.dbtn{
+    border-radius: 15px;
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+    }
+.dbbtn2{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 4px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    }
+</style>
+<div class="heading row">
+	<div class="col-sm-4">
+		<ol class="breadcrumb" style="margin-top:5%;">
+		    <li><a href="#/">Dashboard</a></li>
+		    <li><a href="javascript:void(0)">Memeber Management</a></li>
+	  	</ol>
+	</div>
+	<div class="col-sm-8">
+		<h3 style="margin-left: 43px;">MEMBERS MANAGEMENT</h3>
+	</div>
+</div><br>
+
+<div class="col-sm-12 animated fadeIn">
+  <ul class="nav nav-tabs pg_naves" role="tablist">
+    <li role="presentation" ng-if="login=='Admin'">
+    	<button class="dbtn dbtn2" id="addform12" data-target="#addMas" role="tab" 
+    	aria-controls="addform12" data-toggle="tab">Add Master</button>
+    </li>
+    
+     <li role="presentation" ng-if="login=='Admin'||login=='Master'">
+    	<button class="dbtn dbtn2" id="disform" data-target="#addDis" aria-controls="disform" role="tab" data-toggle="tab">Add Distributor</button>
+    </li>
+    
+     <li role="presentation" ng-if="login=='Admin'||login=='Distributor'">
+    	<button class="dbtn dbtn2" id="retform" data-target="#addRet" aria-controls="retform" role="tab" data-toggle="tab">Add Retailer</button>
+    </li>
+    
+    <li role="presentation" class="active">
+    	<button class="dbtn dbtn2" id="viewform12" data-target="#view" aria-controls="viewform12" role="tab" data-toggle="tab">All Members Management</button>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active " id="view">
+    	<div ng-include="'./app/components/master_management/data.html'"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="addMas">
+    	<div ng-include="'./app/components/master_management/master_form.html'"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="addDis">
+    	<div ng-include="'./app/components/master_management/dist_form.html'"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane " id="addRet">
+    	<div ng-include="'./app/components/master_management/retailerform.html'"></div>
+    </div>
+  </div>  
+</div><br>
+<div class="clearfix"></div><br>

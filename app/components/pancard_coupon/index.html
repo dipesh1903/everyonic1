@@ -1,0 +1,40 @@
+<div id="pancard_coupon">
+	<div ng-if="login == 'Retailer'">
+		<div class="heading row">
+			<div class="col-sm-4">
+				<ol class="breadcrumb" style="margin-top:5%;">
+					<li><a href="#/">Dashboard</a></li>
+					<li><a href="javascript:void(0)">Pancard Coupon Request</a></li>
+				</ol>
+			</div>
+		</div>
+		<div ng-if="login=='Retailer'">
+		<div class="heading row">
+			<div class="col-sm-12">
+				<div class="heading">
+					<h1>Pancard Coupon Request</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="col-sm-12 animated fadeIn">
+			<ul class="nav nav-tabs pg_naves" role="tablist">
+				<li role="presentation" class="active" ng-if="login=='Retailer'">
+					<button class="btn btn-primary btn-sm" id="make_coupon_request" data-target="#make_coupon_request_html" role="tab" aria-controls="make_coupon_request" data-toggle="tab">Coupon Request Form</button>
+				</li>
+				<li role="presentation" style="margin-left:5px;" ng-if="login=='Retailer'">
+					<button class="btn btn-primary btn-sm" id="view_coupon_request_details" data-target="#view_coupon_request_details_html" aria-controls="view_coupon_request_details" role="tab" data-toggle="tab">View Coupon Requests</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<br />
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="make_coupon_request_html">
+    	<div ng-if="login=='Retailer'" ng-include="'./app/components/pancard_coupon/coupon_request_form.html'"></div>
+    </div>
+	<div role="tabpanel" class="tab-pane" id="view_coupon_request_details_html">
+    	<div ng-if="login=='Retailer'" ng-include="'./app/components/pancard_coupon/coupon_request_details.html'"></div>
+    </div>
+</div>

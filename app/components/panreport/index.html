@@ -1,0 +1,80 @@
+ <div class="col-sm-12">
+ 	<div class="heading text-center">
+		<h1>Pan Card Pending Notification</h1>
+	</div><br>
+    <div class="table_horizontal">
+		<div class="input-group custom_addon">
+            <div class="input-group-addon"  style="box-shadow:none; -webkit-box-shadow:none;"><i class="fa fa-search"></i></div>
+				<input type="text" ng-model="search_text" placeholder="Search here...">
+			</div>
+		</div>
+		<div class="table-data">
+<!-- 			<table class="table table-hover"> -->
+<!-- 				<thead> -->
+<!-- 					<tr class="active"> -->
+<!-- 						<th >Pan UserId </th> -->
+<!-- 						<th>Member Name</th> -->
+<!--                         <th >UTIITSL PSName</th> -->
+<!--                         <th >Total Coupan</th> -->
+<!--                         <th >Date & time</th> -->
+<!--                         <th >Status</th> -->
+<!-- <!-- 						<th  style="width:85px">Status Color</th> --> 
+<!-- 						<th  style="width:85px;">&nbsp;&nbsp;Action</th> -->
+						
+						
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 			</table>	 -->
+			<div class="col-sm-12" style="background: #f9f6f6a1;border-bottom: solid 2px rgba(0,0,0,.15);">
+				
+				<div class="col-sm-2 text-center"><label><b>Pan UserId</b></label></div>
+				<div class="col-sm-2 text-center"><label><b>Member Name</b></label></div>
+				<div class="col-sm-2 text-center"><label><b>UTIITSL PSName</b></label></div>
+				<div class="col-sm-1 text-center"><label><b>Total Coupan</b></label></div>
+				<div class="col-sm-2 text-center"><label><b>Date & time</b></label></div>
+				<div class="col-sm-1 text-center"><label><b>Status</b></label></div>
+				<div class="col-sm-2 text-center"><label><b>Action</b></label></div>
+			</div>
+			
+			<div dir-paginate="y in datapan | filter: search_text | itemsPerPage: 2" pagination-id="panid" class="row" >
+			<div class="col-sm-12" style="padding:0.5%">
+		
+				<form name="panreportform" id="panreportform{{y.pan_id}}" method="post" action="">
+					<input name="pan_id" ng-model="y.pan_id" hidden>
+					<input name="mem_id" ng-model="y.mem_id" hidden>
+					
+					<div class="col-sm-2 text-center" >{{y.uti_no}}<input name="uti_no" ng-model="y.uti_no" hidden></div>
+					<div class="col-sm-2 text-center">{{y.name}}</div>
+					<div class="col-sm-2 text-center" >{{y.uti_name}}<input name="uti_name" ng-model="y.uti_name" hidden></div>
+					<div class="col-sm-1 text-center">{{y.cp}}<input name="coupan_rq" ng-model="y.coupan_rq" hidden></div>
+					<div class="col-sm-2 text-center">{{y.date}}</div>
+					<div class="col-sm-1 text-center" ng-if="y.status==0" style="color:orange"><b>Pending</b></div>
+					<div class="col-sm-1 text-center" ng-if="y.status==1" style="color:green"><b>Success</b></div>
+					<div class="col-sm-1 text-center" ng-if="y.status==2" style="color:red"><b>Declined</b></div>
+					<input ng-model="status" name="status" hidden>
+<!-- 						<div class="col-sm-1"> -->
+<!-- 							<div style="height:25px;width:25px;border-radius:50%;background:orange" ng-if="y.status=='0'"></div> -->
+<!-- 							<div style="height:25px;width:25px;border-radius:50%;background:green" ng-if="y.status=='1'"></div> -->
+<!-- 							<div style="height:25px;width:25px;border-radius:50%;background:red" ng-if="y.status=='2'"></div> -->
+<!-- 						</div> -->
+					<div class="col-sm-2 text-center"> 
+					  <a href="javascript:void(0)" ng-click="accept(y.pan_id,1)" id="submitbdivpac1{{y.pan_id}}" ng-if="y.status=='0'">
+   						 <button class="btn btn-success ">Accept</button> </a>				            
+					  <a href="javascript:void(0)" ng-click="decline(y.pan_id,2)" id="submitbdivpac2{{y.pan_id}}" ng-if="y.status=='0'" >
+   						<button class="btn btn-danger ">Decline</button></a> 
+   						<div class="btn btn-success btn-sm" ng-if="y.status=='1'" >Accepted</div>
+   						<div class="btn btn-danger btn-sm" ng-if="y.status=='2'" >Declined</div>
+   					</div>
+   				</form>
+   				
+   				</div>
+			</div>
+			
+		
+			
+			<dir-pagination-controls boundary-links="true" pagination-id="panid"
+				on-page-change="pageChangeHandler(newPageNumber)"
+				template-url="app/dirPagination.tpl.html">
+			</dir-pagination-controls>
+        </div>
+   </div>

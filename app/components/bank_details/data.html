@@ -1,0 +1,56 @@
+<div class="col-sm-12">
+	<div class="table_horizontal">
+		<div class="input-group custom_addon">
+        	<div class="input-group-addon"  style="box-shadow:none; -webkit-box-shadow:none;"><i class="fa fa-search"></i></div>
+				<input type="text" ng-model="search_text" placeholder="Search here...">
+		</div>
+	</div>
+	<div class="table-data">
+		<table class="table table-hover">
+			<thead>
+				<tr class="active">
+					<th>Holder Name</th>
+					<th>Bank Name</th>
+					<th>Account Number</th>
+					<th>IFSC Code</th>
+					<th>Address</th>
+					<th style="width:150px">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr dir-paginate="y in master_details | filter: search_text | itemsPerPage: 10" pagination-id="membersid1">
+					<td>{{y.account_holder_name}}</td>
+					<td>{{y.bank_name}}</td>
+					<td>{{y.account_number}}</td>
+					<td>{{y.ifsc_code}}</td>
+					<td>{{y.bank_address}}</td>
+					<td class="text-center">
+						<table>
+							<tr>
+								<td>
+									<a href="javascript:void(0)" ng-click="update_bank_details(y, master_details.ut)" data-toggle="modal" class="pull-left" data-target=".bs-example-modal-sm">
+										<span class="fa fa-pencil fa-2x"></span>
+									</a>
+								</td>
+								<td width="10">&nbsp;</td>
+								<td>
+									<div ng-if="master_details.ut == 'Admin'">
+										<a href="javascript:void(0)" ng-click="delete_banl_details(y.bs_id, master_details.ut)" class="pull-left">
+											<span class="fa fa-trash fa-2x"></span>
+										</a>
+									</div>
+								</td>
+							</tr>
+						</table>   						               
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+ 	<div class="col-sm-12"> 
+	 	<dir-pagination-controls boundary-links="true" pagination-id="membersid1"
+			on-page-change="pageChangeHandler(newPageNumber)"
+			template-url="app/dirPagination.tpl.html">
+		</dir-pagination-controls>
+ 	</div> 
+</div>

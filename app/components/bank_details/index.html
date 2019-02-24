@@ -1,0 +1,64 @@
+<style type="text/css">
+.dbtn{
+	border-radius: 15px;
+	background-color: white;
+	color: black;
+	border: 2px solid #008CBA;
+}
+.dbbtn2{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 4px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+</style>
+<div ng-if="login=='Admin'">
+	<div class="heading row">
+		<div class="col-sm-4">
+			<ol class="breadcrumb" style="margin-top:5%;">
+				<li><a href="#/">Dashboard</a></li>
+				<li><a href="javascript:void(0)">Add/Edit Bank Details</a></li>
+			</ol>
+		</div>
+		<div class="col-sm-8">
+			<h3 style="margin-left: 43px;">Add/Edit Bank Details</h3>
+		</div>
+	</div>
+	<div class="col-sm-12 animated fadeIn">
+		<ul class="nav nav-tabs pg_naves" role="tablist">
+			<li role="presentation" ng-if="login=='Admin'">
+				<button class="dbtn dbtn2" id="addbankdetails" data-target="#bank_details" role="tab" aria-controls="addbankdetails" data-toggle="tab">Add Bank Details</button>
+			</li>
+			<li role="presentation" class="active">
+				<button class="dbtn dbtn2" id="viewbankdetails" data-target="#view_bank_details" aria-controls="viewbankdetails" role="tab" data-toggle="tab">View Bank Details</button>
+			</li>
+		</ul>
+	</div>
+</div>
+<div ng-if="login=='Retailer' || 'Distributor'">
+	<div class="heading row">
+		<div class="col-sm-12">
+			<div class="heading">
+				<h1>Bank Details</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane" id="bank_details">
+    	<div ng-if="login=='Admin'" ng-include="'./app/components/bank_details/bank_details.html'"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane active" id="view_bank_details">
+    	<div ng-if="login=='Admin'" ng-include="'./app/components/bank_details/data.html'"></div>
+    </div>
+	<div role="tabpanel" class="tab-pane active" id="bank_details_view">
+    	<div ng-if="login=='Distributor' || 'Retailer'" ng-include="'./app/components/bank_details/bank_details_view.html'"></div>
+    </div>
+</div>

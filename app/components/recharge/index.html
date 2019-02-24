@@ -1,0 +1,124 @@
+<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 4px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.button2 {
+border-radius: 15px;
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.button2#addform:focus
+{
+    background:#008cba;
+}
+.button2#disform:focus
+{
+    background:#008cba;
+}
+.button2#elecform:focus
+{
+    background:#008cba;
+}
+.button2#insform:focus
+{
+    background:#008cba;
+}
+.button2#rform:focus
+{
+    background:#008cba;
+}
+.button2#pform:focus
+{
+    background:#008cba;
+}
+.button2#pform1:focus
+{
+    background:#008cba;
+}
+</style>
+
+
+<!-- <h5 class="pull-right">API BALANCE-{{bal}}</h5> -->
+<div class="heading row">
+	<div class="col-sm-4">
+		<ol class="breadcrumb" style="margin-top:5%;">
+		    <li><a href="#/">Dashboard</a></li>
+		    <li><a href="javascript:void(0)">Recharge</a></li>
+	  	</ol>
+	</div>
+	<div class="col-sm-8">
+		<h3 style="margin-left: 20px;">Recharge </h3>
+	</div>
+	
+</div><br>
+
+<div class="col-sm-12 animated fadeIn">
+  <ul class="nav nav-tabs pg_naves" role="tablist">
+  	<li role="presentation" class="active">
+    	<button class="button button2" id="rform" data-target="#mblss" aria-controls="insform" role="tab" data-toggle="tab">Mobile</button>
+    </li>
+    <li role="presentation" >
+    	<button class="button button2" id="addform" data-target="#dthf" aria-controls="dthform" role="tab" data-toggle="tab">Dth</button>
+    </li>
+     <li role="presentation">
+    	<button class="button button2" id="disform" data-target="#adddt" aria-controls="datacardform" role="tab" data-toggle="tab">Datacard</button>
+    </li>
+     <li role="presentation">
+    	<button class="button button2" id="elecform" data-target="#elec" aria-controls="elecform" role="tab" data-toggle="tab">Electricity</button>
+    </li>
+     <li role="presentation">
+    	<button class="button button2" id="insform" data-target="#insf" aria-controls="insform" role="tab" data-toggle="tab">Insurance</button>
+    </li>
+    
+     <li role="presentation">
+    	<button class="button button2" id="pform" data-target="#pp" aria-controls="insform" role="tab" data-toggle="tab">Post Paid</button>
+    </li>
+    <li role="presentation">
+    	<button class="button button2" id="pform1" data-target="#ll" aria-controls="lform" role="tab" data-toggle="tab">Landline Post Paid</button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+  	<div role="tabpanel" class="tab-pane active" id="mblss">
+    	<div ng-include="'./app/components/recharge/mobile.html'"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane " id="dthf">
+    	<div ng-include="'./app/components/recharge/dth.html'"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="adddt">
+    	<div ng-include="'./app/components/recharge/datacard.html'"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="elec">
+    	<div ng-include="'./app/components/recharge/electricity.html'"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="insf">
+    	<div ng-include="'./app/components/recharge/insurance.html'"></div>
+    </div>
+    
+     <div role="tabpanel" class="tab-pane" id="pp">
+    	<div ng-include="'./app/components/recharge/postpaid.html'"></div>
+    </div>
+     <div role="tabpanel" class="tab-pane" id="ll">
+    	<div ng-include="'./app/components/recharge/landline.html'"></div>
+    </div>
+  </div> 
+</div><br>
+<div class="clearfix"></div><br>
